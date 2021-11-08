@@ -4,6 +4,22 @@ from dotenv import load_dotenv, find_dotenv
 from urllib import parse
 
 
+def refine_results_by_delivery(search_results):
+    """Refine search results to include only restaurants offered by one or more of delivery services.
+    Return refined dictionary with new key 'delivery_services' for each remaining restaurant.
+    Key 'delivery_services' has a dictionary value formatted {"delivery_service": "url"}.
+    """
+    for result in search_results["businesses"]:
+        delivery_services = get_delivery_services(
+            result["name"], result["location"]["city"], result["location"]["state"]
+        )
+        if not delivery_services:
+            search_results["businesses"].remove(result)
+        else:
+            result["delivery_services"] = delivery_services
+    return search_results
+
+
 def get_delivery_services(restaurant_name, restaurant_city, restaurant_state):
     """Find all delivery services offering a restaurant and return a dictionary of format {"delivery_service": "url"} containing all services."""
     delivery_services = check_delivery_service(
