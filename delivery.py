@@ -45,6 +45,8 @@ def get_delivery_services(
     params = {
         "key": CUSTOM_SEARCH_KEY,
         "cx": search_engine_id,
+        "filter": "0",
+        "orTerms": "postmates|ubereats|grubhub|doordash",
         "q": query,
         "fields": fields,
     }
@@ -92,7 +94,20 @@ def verify_uber_eats_link(link, restaurant_name):
 def verify_doordash_link(link, restaurant_name):
     """Check if a link is the DoorDash store page for a given restaurant and if so return True."""
     url_restaurant_name = restaurant_name.replace(" ", "-").lower()
-    if link.startswith(f"https://www.doordash.com/store/{url_restaurant_name}"):
+    url_restaurant_name_apostrophe_case1 = url_restaurant_name
+    url_restaurant_name_apostrophe_case2 = url_restaurant_name.replace("'", "-")
+    url_restaurant_name_apostrophe_case3 = url_restaurant_name.replace("'", "%27")
+    if (
+        link.startswith(
+            f"https://www.doordash.com/store/{url_restaurant_name_apostrophe_case1}"
+        )
+        or link.startswith(
+            f"https://www.doordash.com/store/{url_restaurant_name_apostrophe_case2}"
+        )
+        or link.startswith(
+            f"https://www.doordash.com/store/{url_restaurant_name_apostrophe_case3}"
+        )
+    ):
         return True
     return False
 
