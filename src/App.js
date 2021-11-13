@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react'
 import { useState, useRef } from 'react';
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
       foodInput.current.value = "";
       addressInput.current.value = "";
       radiusInput.current.value = "";
+      console.log(data)
+
       setResult(data)
     });
   }
@@ -38,22 +41,16 @@ function App() {
       <input ref={foodInput} placeholder="Enter the food/cuisine" type="text" name="food" required class="text"
         spellcheck="value" />
       <input ref={addressInput} placeholder="Enter the location" type="text" name="address" required class="text" spellcheck="value" />
-      <input ref={radiusInput} placeholder="Enter the radius in miles" type="text" name="radius" required class="text" spellcheck="value" />
+      {/* <input ref={radiusInput} placeholder="Enter the radius in miles" type="text" name="radius" required class="text" spellcheck="value" /> */}
+     
+      <select name="radius" ref={radiusInput}>
+        <option value="" disabled selected hidden>Enter the radius in miles</option>
+        <option value="5">Five</option>
+        <option value="10">Ten</option>
+        <option value="15">Fifteen</option>
+      </select>
       <button onClick={onSavedUser}>Search!</button>
       <p>Please enter valid information.</p>
-      {/* <input type="submit" value="Submit" onClick={onSavedUser} /> */}
-      {/* {res && res.length ? (
-        <>
-          {res.map(list => (
-            <div key={list.id}>
-              <pre>{
-                JSON.stringify(list, null, 2)
-              }</pre>
-            </div>
-          ))}
-        </>) : " Enter valid information"} */}
-
-      {/* <p>{result}</p> */}
 
       {result?.flaskData?.businesses &&
         result.flaskData.businesses.map((d) => (
@@ -64,11 +61,16 @@ function App() {
             <p><a href={d.url}>Website</a></p>
             <p>Address: {d?.location?.display_address}</p>
             <img id="images" src={d.image_url} />
+     
+            <p><a href={d?.delivery_services?.UberEats}>UberEats</a></p>
+            <p><a href={d?.delivery_services?.Grubhub}>GrubHub</a></p>
+            <p><a href={d?.delivery_services?.Postmates}>PostMates</a></p>
+            <p><a href={d?.delivery_services?.DoorDash}>Doordash</a></p>
+
           </div>
-
-
         ))
       }
+
     </div>
   );
 }

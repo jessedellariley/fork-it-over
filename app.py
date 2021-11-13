@@ -4,7 +4,8 @@ import flask
 from flask_login.utils import login_required
 import requests
 from dotenv import load_dotenv, find_dotenv
-
+from urllib import parse
+from delivery import refine_results_by_delivery
 load_dotenv(find_dotenv())
 
 
@@ -50,8 +51,16 @@ def foodPlaces():
             "sort_by": "rating",
         }
         response = requests.get(url=ENDPOINT, params=PARAMETERS, headers=HEADERS)
-        data = response.json()
+        databefore = response.json()
         # print(data)
+        # print("\n")
+        # print("\n")
+        # print("break")
+
+        data = refine_results_by_delivery(databefore)
+        print(data)
+
+
         return flask.jsonify({"flaskData": data})
 
     return flask.render_template("index.html")
