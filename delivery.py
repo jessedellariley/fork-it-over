@@ -1,11 +1,24 @@
+"""Delivery Services Finder
+
+This module adds delivery services to the search results found in app.py.
+
+Funcitons:
+
+    refine_results_by_delivery -> return modified search results dictionary
+    get_delivery_services -> return delivery services for single restaurant as a dictionary
+    verify_uber_eats_link -> return true if a link is the restaurant's Uber Eats page
+    verify_doordash_link -> return true if a link is the restaurant's DoorDash page
+    verify_grubhub_link -> return true if a link is the restaurant's Grubhub page
+    verify_postmates_link -> return true if a link is the restaurant's Postmates page
+"""
 import os
+from urllib import parse
 import requests
 from dotenv import load_dotenv, find_dotenv
-from urllib import parse
 
 
 def refine_results_by_delivery(search_results):
-    """Refine search results to include only restaurants offered by one or more of delivery services.
+    """Refine search results to include only restaurants offered by delivery services.
     Return refined dictionary with new key 'delivery_services' for each remaining restaurant.
     Key 'delivery_services' has a dictionary value formatted {"delivery_service": "url"}.
     """
@@ -26,10 +39,12 @@ def refine_results_by_delivery(search_results):
 def get_delivery_services(
     restaurant_name, restaurant_street_address, restaurant_city, restaurant_state
 ):
-    """Find all delivery services offering a restaurant and return a dictionary of format {"delivery_service": "url"} containing all services."""
+    """Find all delivery services offering a restaurant.
+    Return a dictionary of format {"delivery_service": "url"} containing all services.
+    """
     load_dotenv(find_dotenv())
 
-    CUSTOM_SEARCH_KEY = os.getenv("CUSTOM_SEARCH_KEY")
+    custom_search_key = os.getenv("CUSTOM_SEARCH_KEY")
     search_engine_id = "b5c09c2f0d678adcc"
     query = (
         restaurant_name
@@ -43,7 +58,7 @@ def get_delivery_services(
     fields = "items(link)"  # search only for the url links of each search result
 
     params = {
-        "key": CUSTOM_SEARCH_KEY,
+        "key": custom_search_key,
         "cx": search_engine_id,
         "filter": "0",
         "orTerms": "postmates|ubereats|grubhub|doordash",
@@ -61,13 +76,12 @@ def get_delivery_services(
     links = []
     if "items" in json_response:
         links = [search_result["link"] for search_result in json_response["items"]]
-    print(links)
 
     delivery_services = {}
     for link in links:
         if verify_uber_eats_link(link, restaurant_name):
-            if "Uber Eats" not in delivery_services:
-                delivery_services.update({"Uber Eats": link})
+            if "UberEats" not in delivery_services:
+                delivery_services.update({"UberEats": link})
         elif verify_doordash_link(link, restaurant_name):
             if "DoorDash" not in delivery_services:
                 delivery_services.update({"DoorDash": link})
@@ -113,10 +127,10 @@ def verify_doordash_link(link, restaurant_name):
 
 
 def verify_grubhub_link(link, restaurant_name):
-    """Check if a link is the Grubhub restaurant page for a given restaurant and if so return True."""
+    """Check if a link is the Grubhub store page for a given restaurant and if so return True."""
     url_restaurant_name = restaurant_name.replace(" ", "-").lower()
     url_restaurant_name = list(
-        [ch for ch in url_restaurant_name if ch.isalnum() or ch == "-"]
+        ch for ch in url_restaurant_name if ch.isalnum() or ch == "-"
     )
     url_restaurant_name = "".join(url_restaurant_name)
     if link.startswith(f"https://www.grubhub.com/restaurant/{url_restaurant_name}"):
