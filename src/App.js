@@ -64,10 +64,10 @@ function App() {
             <p><a href={d.url}>Website</a></p>
             <p>Address: {d?.location?.display_address}</p>
             <img id="images" src={d.image_url} />
-            <p><a href={d?.delivery_services?.UberEats}>Uber Eats</a></p>
-            <p><a href={d?.delivery_services?.Grubhub}>Grubhub</a></p>
-            <p><a href={d?.delivery_services?.Postmates}>Postmates</a></p>
-            <p><a href={d?.delivery_services?.DoorDash}>DoorDash</a></p>
+            {d?.delivery_services?.UberEats != undefined && <p><a href={d.delivery_services.UberEats}>Uber Eats</a></p>}
+            {d?.delivery_services?.Grubhub != undefined && <p><a href={d.delivery_services.Grubhub}>Grubhub</a></p>}
+            {d?.delivery_services?.Postmates != undefined && <p><a href={d.delivery_services.Postmates}>Postmates</a></p>}
+            {d?.delivery_services?.DoorDash != undefined && <p><a href={d.delivery_services.DoorDash}>DoorDash</a></p>}
 
           </div>
         ))
