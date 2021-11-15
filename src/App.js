@@ -48,26 +48,26 @@ function App() {
       <input ref={addressInput} placeholder="Enter the location" type="text" name="address" required class="text" spellcheck="value" />
       <select name="radius" ref={radiusInput}>
         <option value="" disabled selected hidden>Enter the radius in miles</option>
-        <option value="5">Five</option>
-        <option value="10">Ten</option>
-        <option value="15">Fifteen</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
       </select>
       <button onClick={onSavedUser}>Search!</button>
       <h4>Please enter valid information.</h4>
       <h1 id="message">{message}</h1>
-      
+
       {result?.flaskData?.businesses &&
-        result.flaskData.businesses.map((d) => (
+        result.flaskData.businesses.sort((a, b) => b.rating - a.rating).map((d) => (
           <div key={d.id} class="places">
             <p>{d.name}</p>
             <p>Rating: {d.rating}</p>
             <p><a href={d.url}>Website</a></p>
             <p>Address: {d?.location?.display_address}</p>
             <img id="images" src={d.image_url} />
-            <p><a href={d?.delivery_services?.UberEats}>UberEats</a></p>
-            <p><a href={d?.delivery_services?.Grubhub}>GrubHub</a></p>
-            <p><a href={d?.delivery_services?.Postmates}>PostMates</a></p>
-            <p><a href={d?.delivery_services?.DoorDash}>Doordash</a></p>
+            <p><a href={d?.delivery_services?.UberEats}>Uber Eats</a></p>
+            <p><a href={d?.delivery_services?.Grubhub}>Grubhub</a></p>
+            <p><a href={d?.delivery_services?.Postmates}>Postmates</a></p>
+            <p><a href={d?.delivery_services?.DoorDash}>DoorDash</a></p>
 
           </div>
         ))

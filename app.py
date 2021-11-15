@@ -58,11 +58,11 @@ def food_places():
         "sort_by": "rating",
     }
     response = requests.get(url=ENDPOINT, params=PARAMETERS, headers=HEADERS)
-    databefore = response.json()
-    for business in databefore["businesses"]:
+    data = response.json()
+    for business in data["businesses"][:]:
         if business["rating"] < 4:
-            databefore["businesses"].remove(business)
-    data = refine_results_by_delivery(databefore)
+            data["businesses"].remove(business)
+    data = refine_results_by_delivery(data)
     return flask.jsonify({"flaskData": data})
 
 

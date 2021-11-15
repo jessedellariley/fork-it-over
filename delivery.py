@@ -28,13 +28,20 @@ def refine_results_by_delivery(search_results):
     # tracks which API key we will use to find delivery services - initialize to first key
     custom_search_key_num = 1
     for result in search_results["businesses"][:]:
-        delivery_services, custom_search_key_num = get_delivery_services(
-            result["name"],
-            result["location"]["address1"],
-            result["location"]["city"],
-            result["location"]["state"],
-            custom_search_key_num,
-        )
+        delivery_services = {}
+        if (
+            result["name"] is not None
+            and result["location"]["address1"] is not None
+            and result["location"]["city"] is not None
+            and result["location"]["state"] is not None
+        ):
+            delivery_services, custom_search_key_num = get_delivery_services(
+                result["name"],
+                result["location"]["address1"],
+                result["location"]["city"],
+                result["location"]["state"],
+                custom_search_key_num,
+            )
         if not delivery_services:
             search_results["businesses"].remove(result)
         else:
