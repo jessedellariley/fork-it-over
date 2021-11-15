@@ -61,8 +61,6 @@ def get_delivery_services(
     links = []
     if "items" in json_response:
         links = [search_result["link"] for search_result in json_response["items"]]
-    print(links)
-
     delivery_services = {}
     for link in links:
         if verify_uber_eats_link(link, restaurant_name):

@@ -3,8 +3,9 @@ import React from 'react'
 import { useState, useRef } from 'react';
 
 function App() {
-  const [res, setRes] = useState([]);
+  const [inputs, setInputs] = useState([]);
   const [result, setResult] = useState([]);
+  const [message, setMessage] = useState([]);
 
   const foodInput = useRef(null);
   const addressInput = useRef(null);
@@ -16,8 +17,12 @@ function App() {
     let address = addressInput.current.value;
     let radius = radiusInput.current.value;
 
-    let add = [...res, food, address, radius]
-    setRes(add);
+    let text = "Loading...Please wait patiently!"
+    let addMessage = [...message, text]
+    setMessage(addMessage)
+
+    let addInputs = [...inputs, food, address, radius]
+    setInputs(addInputs);
 
     // Sends the inputs to the foodPlaces flask endpoint to produce the yelpApi data
     fetch('/foodPlaces', {
@@ -27,12 +32,12 @@ function App() {
       },
       body: JSON.stringify({ 'food': food, 'address': address, 'radius': radius }),
     }).then(response => response.json()).then(data => {
-      setRes([]);
+      setInputs([]);
       foodInput.current.value = "";
       addressInput.current.value = "";
       radiusInput.current.value = "";
       console.log(data)
-
+      setMessage([])
       setResult(data)
     });
   }
@@ -41,8 +46,6 @@ function App() {
       <input ref={foodInput} placeholder="Enter the food/cuisine" type="text" name="food" required class="text"
         spellcheck="value" />
       <input ref={addressInput} placeholder="Enter the location" type="text" name="address" required class="text" spellcheck="value" />
-      {/* <input ref={radiusInput} placeholder="Enter the radius in miles" type="text" name="radius" required class="text" spellcheck="value" /> */}
-     
       <select name="radius" ref={radiusInput}>
         <option value="" disabled selected hidden>Enter the radius in miles</option>
         <option value="5">Five</option>
@@ -50,18 +53,17 @@ function App() {
         <option value="15">Fifteen</option>
       </select>
       <button onClick={onSavedUser}>Search!</button>
-      <p>Please enter valid information.</p>
-
+      <h4>Please enter valid information.</h4>
+      <h1 id="message">{message}</h1>
+      
       {result?.flaskData?.businesses &&
         result.flaskData.businesses.map((d) => (
-          d.rating > 4 &&
           <div key={d.id} class="places">
             <p>{d.name}</p>
             <p>Rating: {d.rating}</p>
             <p><a href={d.url}>Website</a></p>
             <p>Address: {d?.location?.display_address}</p>
             <img id="images" src={d.image_url} />
-     
             <p><a href={d?.delivery_services?.UberEats}>UberEats</a></p>
             <p><a href={d?.delivery_services?.Grubhub}>GrubHub</a></p>
             <p><a href={d?.delivery_services?.Postmates}>PostMates</a></p>
