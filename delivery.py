@@ -2,7 +2,7 @@
 
 This module adds delivery services to the search results found in app.py.
 
-Funcitons:
+Functions:
 
     refine_results_by_delivery -> return modified search results dictionary
     get_delivery_services -> return delivery services for single restaurant as a dictionary
@@ -17,17 +17,23 @@ import requests
 from dotenv import load_dotenv, find_dotenv
 
 
+NUM_CUSTOM_SEARCH_KEYS = 20
+
+
 def refine_results_by_delivery(search_results):
     """Refine search results to include only restaurants offered by delivery services.
     Return refined dictionary with new key 'delivery_services' for each remaining restaurant.
     Key 'delivery_services' has a dictionary value formatted {"delivery_service": "url"}.
     """
+    # tracks which API key we will use to find delivery services - initialize to first key
+    custom_search_key_num = 1
     for result in search_results["businesses"][:]:
-        delivery_services = get_delivery_services(
+        delivery_services, custom_search_key_num = get_delivery_services(
             result["name"],
             result["location"]["address1"],
             result["location"]["city"],
             result["location"]["state"],
+            custom_search_key_num,
         )
         if not delivery_services:
             search_results["businesses"].remove(result)
@@ -37,46 +43,34 @@ def refine_results_by_delivery(search_results):
 
 
 def get_delivery_services(
-    restaurant_name, restaurant_street_address, restaurant_city, restaurant_state
+    restaurant_name,
+    restaurant_street_address,
+    restaurant_city,
+    restaurant_state,
+    custom_search_key_num,
 ):
     """Find all delivery services offering a restaurant.
     Return a dictionary of format {"delivery_service": "url"} containing all services.
+    Return the index of the current Google Custom Search API key being used.
     """
-    load_dotenv(find_dotenv())
-
-    custom_search_key = os.getenv("CUSTOM_SEARCH_KEY")
-    search_engine_id = "b5c09c2f0d678adcc"
-    query = (
-        restaurant_name
-        + " "
-        + restaurant_street_address
-        + " "
-        + restaurant_city
-        + ", "
-        + restaurant_state
+    links, new_custom_search_key_num = get_possible_links(
+        restaurant_name,
+        restaurant_street_address,
+        restaurant_city,
+        restaurant_state,
+        custom_search_key_num,
     )
-    fields = "items(link)"  # search only for the url links of each search result
-
-    params = {
-        "key": custom_search_key,
-        "cx": search_engine_id,
-        "filter": "0",
-        "orTerms": "postmates|ubereats|grubhub|doordash",
-        "q": query,
-        "fields": fields,
-    }
-
-    params_url_encoded = parse.urlencode(params)
-
-    response = requests.get(
-        f"https://www.googleapis.com/customsearch/v1?{params_url_encoded}"
-    )
-
-    json_response = response.json()
-    links = []
-    if "items" in json_response:
-        links = [search_result["link"] for search_result in json_response["items"]]
-
+    # occurs when API key has reached max number of calls/day
+    if custom_search_key_num != new_custom_search_key_num:
+        custom_search_key_num = new_custom_search_key_num
+        # make the call using a new API key
+        links, custom_search_key_num = get_possible_links(
+            restaurant_name,
+            restaurant_street_address,
+            restaurant_city,
+            restaurant_state,
+            custom_search_key_num,
+        )
     delivery_services = {}
     for link in links:
         if verify_uber_eats_link(link, restaurant_name):
@@ -91,7 +85,69 @@ def get_delivery_services(
         elif verify_postmates_link(link, restaurant_name):
             if "Postmates" not in delivery_services:
                 delivery_services.update({"Postmates": link})
-    return delivery_services
+    return delivery_services, custom_search_key_num
+
+
+def get_possible_links(
+    restaurant_name,
+    restaurant_street_address,
+    restaurant_city,
+    restaurant_state,
+    custom_search_key_num,
+):
+    """Use Google Custom Search API to get potential delivery service
+    website links for a particular restaurant.
+    Return a list of the potential links.
+    Return the index of the current Google Custom Search API key being used.
+    """
+    # pylint: disable=invalid-name
+    CUSTOM_SEARCH_KEY = get_custom_search_key(custom_search_key_num)
+    if CUSTOM_SEARCH_KEY == "":
+        return [], custom_search_key_num
+    SEARCH_ENGINE_ID = "b5c09c2f0d678adcc"
+    query = (
+        restaurant_name
+        + " "
+        + restaurant_street_address
+        + " "
+        + restaurant_city
+        + ", "
+        + restaurant_state
+    )
+    fields = "items(link)"  # search only for the url links of each search result
+
+    params = {
+        "key": CUSTOM_SEARCH_KEY,
+        "cx": SEARCH_ENGINE_ID,
+        "filter": "0",
+        "orTerms": "postmates|ubereats|grubhub|doordash",
+        "q": query,
+        "fields": fields,
+    }
+
+    params_url_encoded = parse.urlencode(params)
+
+    response = requests.get(
+        f"https://www.googleapis.com/customsearch/v1?{params_url_encoded}"
+    )
+
+    json_response = response.json()
+    if "error" in json_response:
+        custom_search_key_num += 1
+    links = []
+    if "items" in json_response:
+        links = [search_result["link"] for search_result in json_response["items"]]
+    return links, custom_search_key_num
+
+
+def get_custom_search_key(custom_search_key_num):
+    """Get the correct Google Custom Search API Key from environment variables.
+    If all API keys are at their daily limit, return "".
+    """
+    if custom_search_key_num > NUM_CUSTOM_SEARCH_KEYS:
+        return ""
+    load_dotenv(find_dotenv())
+    return os.getenv("CUSTOM_SEARCH_KEY" + str(custom_search_key_num))
 
 
 def verify_uber_eats_link(link, restaurant_name):
