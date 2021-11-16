@@ -28,7 +28,7 @@ if db_url.startswith("postgres://"):
 app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 # Gets rid of a warning
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.secret_key = os.getenv("APP_SECRET_KEY")
+app.secret_key = bytes(os.getenv("APP_SECRET_KEY"), "utf-8")
 
 from flask_login import UserMixin
 
@@ -178,7 +178,7 @@ def food_places():
 if __name__ == "__main__":
     app.run(
         debug=True,
-        # use_reloader=False,
-        # host=os.getenv("IP", "0.0.0.0"),
-        # port=int(os.getenv("PORT", 8081)),
+        use_reloader=False,
+        host=os.getenv("IP", "0.0.0.0"),
+        port=int(os.getenv("PORT", 8081)),
     )
