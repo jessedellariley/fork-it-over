@@ -43,6 +43,8 @@ function App() {
   }
   return (
     <div class="divClass">
+      <h4>Search the best food places available near you!</h4>
+      
       <input ref={foodInput} placeholder="Enter the food/cuisine" type="text" name="food" required class="text"
         spellcheck="value" />
       <input ref={addressInput} placeholder="Enter the location" type="text" name="address" required class="text" spellcheck="value" />
@@ -53,25 +55,34 @@ function App() {
         <option value="15">15</option>
       </select>
       <button onClick={onSavedUser}>Search!</button>
-      <h4>Please enter valid information.</h4>
+      <h5>Please enter valid information.</h5>
       <h1 id="message">{message}</h1>
 
       {result?.flaskData?.businesses &&
         result.flaskData.businesses.sort((a, b) => b.rating - a.rating).map((d) => (
           <div key={d.id} class="places">
-            <p>{d.name}</p>
-            <p>Rating: {d.rating}</p>
-            <p><a href={d.url}>Website</a></p>
+            <h2>{d.name}</h2>
+            <h4>Rating: {d.rating}</h4>
+            <p><a target="_blank" href={d.url}>Website</a></p>
             <p>Address: {d?.location?.display_address}</p>
             <img id="images" src={d.image_url} />
-            {d?.delivery_services?.UberEats != undefined && <p><a href={d.delivery_services.UberEats}>Uber Eats</a></p>}
-            {d?.delivery_services?.Grubhub != undefined && <p><a href={d.delivery_services.Grubhub}>Grubhub</a></p>}
-            {d?.delivery_services?.Postmates != undefined && <p><a href={d.delivery_services.Postmates}>Postmates</a></p>}
-            {d?.delivery_services?.DoorDash != undefined && <p><a href={d.delivery_services.DoorDash}>DoorDash</a></p>}
+            <div class = "grid_container">
+              {d?.delivery_services?.UberEats != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.UberEats}>Uber Eats</a></p>}
+              {d?.delivery_services?.Grubhub != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Grubhub}>Grubhub</a></p>}
+              {d?.delivery_services?.Postmates != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Postmates}>Postmates</a></p>}
+              {d?.delivery_services?.DoorDash != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.DoorDash}>DoorDash</a></p>}
+            </div>
 
           </div>
         ))
       }
+      <form id="signup" method="POST" action="/logout">
+        <div class="inputs">
+          <input id="submit" type="submit" value="LOGOUT" />
+        </div>
+
+      </form>
+      
 
     </div>
   );

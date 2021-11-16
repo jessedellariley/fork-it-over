@@ -42,6 +42,7 @@ body {
   font-size: 1rem;
   font-family: 'Georgia';
   text-align: center;
+  background-color: rgb(251, 255, 0);
 
 }
 *{
@@ -54,12 +55,33 @@ body {
     border:1px solid black;
     margin:10px;
     border-radius: 10px;
+    background:rgb(22, 255, 127);
+
 }
 #images{
-    height:150px;
-    width:150px;
-    border-radius: 10px;
+    height:200px;
+    width:220px;
+    border-radius: 10%;
+
 }
 #message{
   font: bold;
+}
+
+.grid_container {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  margin:10px;
+  justify-content: center;
+
+}
+.grid_item {
+  border: 1px solid;
+  background-color: rgba(241, 255, 181, 0.8);
+  padding: 20px;
+  text-align: center;
+  margin:2px;
+  border-radius: 10px;
+
 }
