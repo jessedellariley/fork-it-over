@@ -65,12 +65,12 @@ function App() {
             <h4>Rating: {d.rating}</h4>
             <p><a target="_blank" href={d.url}>Website</a></p>
             <p>Address: {d?.location?.display_address}</p>
-            <img id="images" src={d.image_url} />
+            <img id="images" alt="Restaurant image from Yelp" src={d.image_url} />
             <div class="grid_container">
-              {d?.delivery_services?.UberEats != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.UberEats}>Uber Eats</a></p>}
-              {d?.delivery_services?.Grubhub != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Grubhub}>Grubhub</a></p>}
-              {d?.delivery_services?.Postmates != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Postmates}>Postmates</a></p>}
-              {d?.delivery_services?.DoorDash != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.DoorDash}>DoorDash</a></p>}
+              {d?.delivery_services?.UberEats !== undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.UberEats}>Uber Eats</a></p>}
+              {d?.delivery_services?.Grubhub !== undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Grubhub}>Grubhub</a></p>}
+              {d?.delivery_services?.Postmates !== undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Postmates}>Postmates</a></p>}
+              {d?.delivery_services?.DoorDash !== undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.DoorDash}>DoorDash</a></p>}
             </div>
 
           </div>
