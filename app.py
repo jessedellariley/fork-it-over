@@ -117,7 +117,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["POST"])
 def loginform():
     """Get user input on login form.
     Check if the username entered is in the db, and if not flash a message.
