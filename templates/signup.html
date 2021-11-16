@@ -1,67 +1,78 @@
 <html>
-
+    
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-    <head>
-        <style>
-            body {
-                background-color: rgb(251, 255, 0);
-                text-align: center;
-                color: #f10c0c;
-                font-size: 25px;
-                margin-top: 175px;
-            }
+        body {
+            background-color: #24252A;
+            margin-top: 100px;
+            margin-bottom: 75px;
+            text-align: center;
+            color: #edf0f1;
+            font-size: 15px;
+            font-family: "Montserrat", sans-serif;
+        }
 
-            .text {
-                width: 250px;
-                height: 40px;
-                border-radius: 10px;
-                border-color: #c7ee93;
-                border-style: solid;
-                outline: none;
-                font-size: 20px;
-            }
+        .text {
+            width: 250px;
+            height: 40px;
+            border-radius: 10px;
+            border-color: #c7ee93;
+            border-style: solid;
+            outline: none;
+            font-size: 20px;
+        }
 
-            .btn {
-                width: 125px;
-                height: 35px;
-                border-radius: 25px;
-                border-width: 0px;
-                background: #c7ee93;
-                font-size: medium;
-                border-style: solid;
-                outline: none;
-                cursor: pointer;
-                box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
-                transition: 0.3s;
-                font-weight: bold;
-            }
+        .btn {
+            width: 125px;
+            height: 35px;
+            border-radius: 25px;
+            border-width: 0px;
+            background: rgba(0,136,169,1);
+            font-size: medium;
+            border-style: solid;
+            outline: none;
+            cursor: pointer;
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            font-weight: bold;
+        }
 
-            .btn:hover {
-                background: lightblue;
-            }
+        .btn:hover {
+            background-color: rgba(0,136,169,0.8);
+        }
 
-            img {
-                border-radius: 25px;
-            }
+        img {
+            border-radius: 25px;
+        }
 
-            audio {
-                padding-bottom: 30px;
-            }
+        audio {
+            padding-bottom: 30px;
+        }
 
-            .flashes {
-                color: rgb(255, 93, 93)
-            }
+        .flashes {
+            color: rgb(255, 93, 93)
+        }
 
-            a {
-                color: rgb(255, 59, 59)
-            }
-        </style>
-    </head>
+        a {
+            color: rgb(255, 59, 59)
+        }
+
+        #check-box {
+            margin-bottom: -10px;
+        }
+        #link1{
+            font-size: 18px;
+        }
+
+    </style>
 </head>
-
 <body>
+
     <div class="container">
+        
         <h2>Create an account!</h2>
         <br>
         <div class="wrapper">
@@ -77,20 +88,30 @@
             <form method="POST" action="/signup">
                 <p class="textbox">Username</p>
                 <input type="email" name="username"
-                    pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*"
-                    placeholder="Email..." minlength="8" maxlength="30" required class="text">
+                    pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" placeholder="Email..."
+                    minlength="8" maxlength="30" required class="text">
                 <br>
                 <p class="textbox">Password</p>
-                <input type="text" name="password" placeholder="Password..." minlength="6" maxlength="20" required
-                    class="text">
+                <input placeholder="Password..." type="password" name="password" required class="text" id="password" />
+                <p id="check-box"><input type="checkbox" id="togglePassword">Show Password </input></p>
+
+                <script>
+                    const togglePassword = document.querySelector('#togglePassword');
+                    const password = document.querySelector('#password');
+                    togglePassword.addEventListener('click', function (e) {
+                        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                        password.setAttribute('type', type);
+                    });
+                </script>
                 <br><br>
                 <button class="btn">Signup</button><br>
-                <p class="textbox">
-                    Already Signed up before?<br> <br> <a href="/login"> Go back to login</a>
+                <p>
+                    Already Signed up before?<br> <br> <a id="link1" href="/login"> Go back to login</a>
                 <p>
             </form>
         </div>
     </div>
+    
 </body>
 
 </html>
