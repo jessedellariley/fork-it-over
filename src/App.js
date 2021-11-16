@@ -44,19 +44,19 @@ function App() {
   return (
     <div class="divClass">
       <h4>Search the best food places available near you!</h4>
-      
+
       <input ref={foodInput} placeholder="Enter the food/cuisine" type="text" name="food" required class="text"
-        spellcheck="value" />
-      <input ref={addressInput} placeholder="Enter the location" type="text" name="address" required class="text" spellcheck="value" />
-      <select name="radius" ref={radiusInput}>
+        spellcheck="value" data-testid="query_input" />
+      <input ref={addressInput} placeholder="Enter the location" type="text" name="address" required class="text" spellcheck="value" data-testid="location_input" />
+      <select name="radius" ref={radiusInput} data-testid="radius_options">
         <option value="" disabled selected hidden>Enter the radius in miles</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
+        <option value="5" data-testid="5_miles">5</option>
+        <option value="10" data-testid="10_miles">10</option>
+        <option value="15" data-testid="15_miles">15</option>
       </select>
       <button onClick={onSavedUser}>Search!</button>
       <h5>Please enter valid information.</h5>
-      <h1 id="message">{message}</h1>
+      <h1 id="message" data-testid="loading">{message}</h1>
 
       {result?.flaskData?.businesses &&
         result.flaskData.businesses.sort((a, b) => b.rating - a.rating).map((d) => (
@@ -66,7 +66,7 @@ function App() {
             <p><a target="_blank" href={d.url}>Website</a></p>
             <p>Address: {d?.location?.display_address}</p>
             <img id="images" src={d.image_url} />
-            <div class = "grid_container">
+            <div class="grid_container">
               {d?.delivery_services?.UberEats != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.UberEats}>Uber Eats</a></p>}
               {d?.delivery_services?.Grubhub != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Grubhub}>Grubhub</a></p>}
               {d?.delivery_services?.Postmates != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Postmates}>Postmates</a></p>}
@@ -82,7 +82,7 @@ function App() {
         </div>
 
       </form>
-      
+
 
     </div>
   );
