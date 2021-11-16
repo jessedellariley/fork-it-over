@@ -9,13 +9,13 @@ body {
     color: #edf0f1;
 }
 
-img {
+/* img {
   display: block;
   margin-left: auto;
   margin-right: auto;
   border-radius: 8px;
   width: 20%;
-}
+} */
 
 li, a, button{
     font-family: "Montserrat", sans-serif;
@@ -74,8 +74,38 @@ button:hover{
 }
 
 .places{
-  border:1px solid white;
-  margin:10px;
+  border: 1px solid white;
+  margin: 200px;
   border-radius: 10px;
-  background:rgb(25, 255, 128);
+}
+
+#images{
+  height:200px;
+  width:220px;
+  border-radius: 10%;
+
+}
+#message{
+font: bold;
+}
+
+.grid_container {
+display: grid;
+grid-template-columns: auto auto;
+padding: 10px;
+margin:10px;
+justify-content: center;
+
+}
+.grid_item {
+border: 1px solid;
+background-color: rgba(0,136,169,1);
+padding: 20px;
+text-align: center;
+margin:2px;
+border-radius: 10px;
+}
+
+.grid_item:hover{
+  background-color: rgba(0,136,169,0.8);
 }

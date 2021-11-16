@@ -56,8 +56,10 @@ function App() {
             <li><a href="#">My Favorites</a></li>
           </ul>
         </nav>
-        <a class="contact" href="#"><button>Logout</button></a>
+        <a class="contact" href="/login"><button>Logout</button></a>
       </header>
+      <h4>Search the best food places available near you!</h4>
+
       <input ref={foodInput} placeholder="Enter the food/cuisine" type="text" name="food" required class="text"
         spellcheck="value" />
       <input ref={addressInput} placeholder="Enter the location" type="text" name="address" required class="text" spellcheck="value" />
@@ -68,28 +70,27 @@ function App() {
         <option value="15">15</option>
       </select>
       <button onClick={onSavedUser}><GiMagnifyingGlass /></button>
-      {/* <button onClick={onSavedUser}>Search!</button> */}
-      <h4>Please enter valid information.</h4>
+      <h5>Please enter valid information.</h5>
       <h1 id="message">{message}</h1>
-      <div class="results">
-        {result?.flaskData?.businesses &&
-          result.flaskData.businesses.sort((a, b) => b.rating - a.rating).map((d) => (
-            <div key={d.id} class="places">
-              <p>{d.name}</p>
-              <p>Rating: {d.rating}</p>
-              <p><a href={d.url}>Website</a></p>
-              <p>Address: {d?.location?.display_address}</p>
-              <img id="images" src={d.image_url} />
-              {d?.delivery_services?.UberEats != undefined && <p><a href={d.delivery_services.UberEats}>=<SiUbereats /></a></p>}
-              {d?.delivery_services?.Grubhub != undefined && <p><a href={d.delivery_services.Grubhub}><SiGrubhub /></a></p>}
-              {d?.delivery_services?.Postmates != undefined && <p><a href={d.delivery_services.Postmates}><SiPostmates /></a></p>}
-              {d?.delivery_services?.DoorDash != undefined && <p><a href={d.delivery_services.DoorDash}><SiDoordash /></a></p>}
 
+      {result?.flaskData?.businesses &&
+        result.flaskData.businesses.sort((a, b) => b.rating - a.rating).map((d) => (
+          <div key={d.id} class="places">
+            <h2>{d.name}</h2>
+            <h4>Rating: {d.rating}</h4>
+            <p><a target="_blank" href={d.url}>Website</a></p>
+            <p>Address: {d?.location?.display_address}</p>
+            <img id="images" src={d.image_url} />
+            <div class="grid_container">
+              {d?.delivery_services?.UberEats != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.UberEats}><SiUbereats /></a></p>}
+              {d?.delivery_services?.Grubhub != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Grubhub}><SiGrubhub /></a></p>}
+              {d?.delivery_services?.Postmates != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.Postmates}><SiPostmates /></a></p>}
+              {d?.delivery_services?.DoorDash != undefined && <p class="grid_item"><a target="_blank" href={d.delivery_services.DoorDash}><SiDoordash /></a></p>}
             </div>
-          ))
-        }
-      </div>
 
+          </div>
+        ))
+      }
     </div>
   );
 }
