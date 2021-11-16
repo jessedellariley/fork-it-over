@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+
+        body {
+            background-color: rgb(251, 255, 0);
+            margin-top: 20px;
+            text-align: center;
+            color: #f10c0c;
+            font-size: 25px;
+            margin-top: 175px;
+        }
+
+        .text {
+            width: 250px;
+            height: 40px;
+            border-radius: 10px;
+            border-color: #c7ee93;
+            border-style: solid;
+            outline: none;
+            font-size: 20px;
+        }
+
+        .btn {
+            width: 125px;
+            height: 35px;
+            border-radius: 25px;
+            border-width: 0px;
+            background: #c7ee93;
+            font-size: medium;
+            border-style: solid;
+            outline: none;
+            cursor: pointer;
+            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: rgb(70, 186, 224);
+        }
+
+        img {
+            border-radius: 25px;
+        }
+
+        audio {
+            padding-bottom: 30px;
+        }
+
+        .flashes {
+            color: rgb(255, 93, 93)
+        }
+
+        a {
+            color: rgb(255, 59, 59)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Welcome to Fork-it-over!</h2>
+        <br>
+        <div class="wrapper">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul id="flashes" class=flashes>
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <form method="POST" action="/login">
+                <p class="textbox">Username</p>
+                <input placeholder="Email..." type="text" name="username" required class="text">
+                <br>
+                <p class="textbox">Password</p>
+                <input placeholder="Password..." type="text" name="password" required class="text">
+                <br><br>
+                <button class="btn">Login</button><br>
+            </form>
+
+            <p class="textbox">
+                Don't have an account? <br> <br> <a href="/signup">Signup now!</a>
+            <p>
+        </div>
+    </div>
+</body>
+
+</html>
