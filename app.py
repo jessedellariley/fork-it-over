@@ -111,7 +111,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["POST"])
 def loginform():
     if current_user.is_authenticated:
         return redirect("/index")
@@ -182,3 +182,4 @@ if __name__ == "__main__":
         host=os.getenv("IP", "0.0.0.0"),
         port=int(os.getenv("PORT", 8081)),
     )
+
