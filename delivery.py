@@ -1,9 +1,6 @@
 """Delivery Services Finder
-
 This module adds delivery services to the search results found in app.py.
-
 Functions:
-
     refine_results_by_delivery -> return modified search results dictionary
     get_delivery_services -> return delivery services for single restaurant as a dictionary
     verify_uber_eats_link -> return true if a link is the restaurant's Uber Eats page

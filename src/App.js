@@ -22,6 +22,11 @@ function App() {
     let address = addressInput.current.value;
     let radius = radiusInput.current.value;
 
+    if (food.length === 0 || address.length === 0 || radius.length === 0) {
+      alert("One or more fields are empty");
+      return false;
+    }
+
     let text = "Loading...Please wait patiently!"
     let addMessage = [...message, text]
     setMessage(addMessage)
@@ -61,13 +66,13 @@ function App() {
       <h4>Search the best food places available near you!</h4>
 
       <input ref={foodInput} placeholder="Enter the food/cuisine" type="text" name="food" required class="text"
-        spellcheck="value" />
-      <input ref={addressInput} placeholder="Enter the location" type="text" name="address" required class="text" spellcheck="value" />
-      <select name="radius" ref={radiusInput}>
+        spellcheck="value" data-testid="query_input" />
+      <input ref={addressInput} placeholder="Enter the location" type="text" name="address" required class="text" spellcheck="value" data-testid="location_input" />
+      <select name="radius" ref={radiusInput} data-testid="radius_options">
         <option value="" disabled selected hidden>Enter the radius in miles</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
+        <option value="5" data-testid="5_miles">5</option>
+        <option value="10" data-testid="10_miles">10</option>
+        <option value="15" data-testid="15_miles">15</option>
       </select>
       <button onClick={onSavedUser}><GiMagnifyingGlass /></button>
       <h5>Please enter valid information.</h5>
