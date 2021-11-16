@@ -56,7 +56,7 @@ function App() {
             <li><a href="#">My Favorites</a></li>
           </ul>
         </nav>
-        <a class="contact" href="/login"><button>Logout</button></a>
+        <a class="contact" href="/logout"><button>Logout</button></a>
       </header>
       <h4>Search the best food places available near you!</h4>
 

@@ -91,6 +91,7 @@ font: bold;
 
 .grid_container {
 display: grid;
+grid-template-rows: 50px 50px;
 grid-template-columns: auto auto;
 padding: 10px;
 margin:10px;
@@ -99,6 +100,7 @@ justify-content: center;
 }
 .grid_item {
 border: 1px solid;
+justify-content: center;
 background-color: rgba(0,136,169,1);
 padding: 20px;
 text-align: center;
