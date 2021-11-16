@@ -178,7 +178,7 @@ def food_places():
 if __name__ == "__main__":
     app.run(
         debug=True,
-        # use_reloader=False,
-        # host=os.getenv("IP", "0.0.0.0"),
-        # port=int(os.getenv("PORT", 8081)),
+        use_reloader=False,
+        host=os.getenv("IP", "0.0.0.0"),
+        port=int(os.getenv("PORT", 8081)),
     )
