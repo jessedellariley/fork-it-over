@@ -3,6 +3,10 @@ import React from 'react'
 import { useState, useRef } from 'react';
 import logo from './Logo_LightBG.png';
 import account from './account.png';
+import unfilledfavorite from './unfilledfavorite.png';
+import accountdropdown from './account-dropdown.png';
+import logout from './logout.png';
+import searchbutton from './searchbutton.png';
 
 function App() {
   const [inputs, setInputs] = useState([]);
@@ -84,7 +88,11 @@ function App() {
                       <div class="searchbar-button-outer-container">
                         <div class="searchbar-button-mid-container">
                           <div class="searchbar-button-inner-container">
-                            <button class="searchbar-button" onClick={onSavedUser}>*</button>
+                            <button class="searchbar-button" onClick={onSavedUser}>
+                              <span class="searchbar-button-image-wrapper">
+                                <img class="searchbar-button-image" src={searchbutton} />
+                              </span>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -98,9 +106,7 @@ function App() {
                 <a href="#" class="navbar-link">
                   <div class="navbar-link-title-padding">
                     <div class="navbar-link-title-container">
-                      <p class="navbar-link-title">
-                        About
-                      </p>
+                      <p class="navbar-link-title">About</p>
                     </div>
                   </div>
                 </a>
@@ -111,14 +117,74 @@ function App() {
                 <div class="account-table-cell">
                   <div class="account-mid-container">
                     <div class="account-inner-container">
-                      <button class="account" aria-label="Toggle Menu" aria-haspopup="menu" aria-controls="header-dropdown-menu"
-                        aria-expanded="false" type="submit">
-                        <span class="account-image-outer-wrapper">
-                          <span class="account-image-inner-wrapper">
-                            <img class="account-image" src={account} alt="Account" width="36" height="36" />
+                      <div>
+                        <button class="account" aria-label="Toggle Menu" aria-haspopup="menu" aria-controls="header-dropdown-menu"
+                          aria-expanded="true" type="submit">
+                          <span class="account-image-outer-wrapper">
+                            <span class="account-image-inner-wrapper">
+                              <img class="account-image" src={account} alt="Account" width="36" height="36" />
+                            </span>
                           </span>
-                        </span>
-                      </button>
+                        </button>
+                        <menu class="menu">
+                          <div class="menu-account-section">
+                            <a class="menu-item" href="#" tabindex="0">
+                              <div class="menu-item-components-padding">
+                                <div class="menu-item-components-container">
+                                  <div class="menu-item-symbol-container">
+                                    <div class="menu-item-symbol-padding">
+                                      <span class="menu-item-symbol-wrapper">
+                                        <img class="menu-item-symbol" src={accountdropdown} />
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div class="menu-item-name-container">
+                                    <span class="menu-item-name">Account</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                            <a class="menu-item" href="#" tabindex="0">
+                              <div class="menu-item-components-padding">
+                                <div class="menu-item-components-container">
+                                  <div class="menu-item-symbol-container">
+                                    <div class="menu-item-symbol-padding">
+                                      <span class="menu-item-symbol-wrapper">
+                                        <img class="menu-item-symbol" src={unfilledfavorite} />
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div class="menu-item-name-container">
+                                    <span class="menu-item-name">Favorites</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                          </div>
+                          <div class="menu-logout-section">
+                            <form id="logout" class="logout" action="/logout" name="logout" method="post">
+                              <div class="logout-button-wrapper">
+                                <button class="menu-item" type="submit" role="menuitem" tabindex="0">
+                                  <div class="menu-item-components-padding">
+                                    <div class="menu-item-components-container">
+                                      <div class="menu-item-symbol-container">
+                                        <div class="menu-item-symbol-padding">
+                                          <span class="menu-item-symbol-wrapper">
+                                            <img class="menu-item-symbol" src={logout} />
+                                          </span>
+                                        </div>
+                                      </div>
+                                      <div class="menu-item-name-container">
+                                        <span class="menu-item-name">Log Out</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+                        </menu>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -126,7 +192,7 @@ function App() {
             </div>
           </div>
         </div>
-      </div>
+      </div >
       <div class="results">
         <h1 id="message" data-testid="loading">{message}</h1>
         {result?.flaskData?.businesses &&
@@ -147,7 +213,7 @@ function App() {
           ))
         }
       </div>
-    </div>
+    </div >
   );
 }
 export default App;
