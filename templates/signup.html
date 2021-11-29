@@ -1,18 +1,18 @@
 <html>
-    
+
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
         body {
-            background-color: #24252A;
-            margin-top: 100px;
-            margin-bottom: 75px;
-            text-align: center;
-            color: #edf0f1;
+            background-image: url('/build/static/media/Background.f39e0fae.png');
+            background-size: cover;
+            min-width: 100vw;
+            min-height: 100vh;
+            background-attachment: fixed;
             font-size: 15px;
-            font-family: "Montserrat", sans-serif;
+            font-family: 'Comfortaa', cursive;
         }
 
         .text {
@@ -30,7 +30,7 @@
             height: 35px;
             border-radius: 25px;
             border-width: 0px;
-            background: rgba(0,136,169,1);
+            background: rgba(0, 136, 169, 1);
             font-size: medium;
             border-style: solid;
             outline: none;
@@ -41,7 +41,7 @@
         }
 
         .btn:hover {
-            background-color: rgba(0,136,169,0.8);
+            background-color: rgba(0, 136, 169, 0.8);
         }
 
         img {
@@ -53,26 +53,27 @@
         }
 
         .flashes {
-            color: rgb(255, 93, 93)
+            color: #ff3355
         }
 
         a {
-            color: rgb(255, 59, 59)
+            color: #ff3355
         }
 
         #check-box {
             margin-bottom: -10px;
         }
-        #link1{
+
+        #link1 {
             font-size: 18px;
         }
-
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        
+
         <h2>Create an account!</h2>
         <br>
         <div class="wrapper">
@@ -88,8 +89,8 @@
             <form method="POST" action="/signup">
                 <p class="textbox">Username</p>
                 <input type="email" name="username"
-                    pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" placeholder="Email..."
-                    minlength="8" maxlength="30" required class="text">
+                    pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*"
+                    placeholder="Email..." minlength="8" maxlength="30" required class="text">
                 <br>
                 <p class="textbox">Password</p>
                 <input placeholder="Password..." type="password" name="password" required class="text" id="password" />
@@ -111,7 +112,7 @@
             </form>
         </div>
     </div>
-    
+
 </body>
 
 </html>

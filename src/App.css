@@ -581,6 +581,7 @@ input[type=number] {
 }
 
 .restaurant-name {
+    flex: .95;
     color: #4f6cae;
     font-size: 18pt;
     font-weight: 600;
@@ -693,4 +694,20 @@ input[type=number] {
 
 .account-no-results {
     flex: .1;
+}
+
+.name-and-favorite {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.favorite-icon {
+    flex: .05;
+}
+
+.unfilled-favorite {
+    width: 20px;
+    height: 20px;
 }

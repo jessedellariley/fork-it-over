@@ -11,6 +11,8 @@ import ubereats_img from './ubereats.png';
 import grubhub_img from './grubhub.png';
 import doordash_img from './doordash.png';
 import postmates_img from './postmates.png';
+import background from './Background.png';
+import filledfavorite from './filledfavorite.png';
 
 function App() {
   const [inputs, setInputs] = useState([]);
@@ -56,7 +58,6 @@ function App() {
     });
   }
   return (
-
     <div>
       {result?.flaskData?.businesses ? (
         <div>
@@ -207,7 +208,12 @@ function App() {
                   <div key={d.id} class="places">
                     <div class="places-content-wrapper">
                       <div class="restaurant-info-container">
-                        <h2 class="restaurant-name">{d.name}</h2>
+                        <div class="name-and-favorite">
+                          <h2 class="restaurant-name">{d.name}</h2>
+                          <div class="favorite-icon">
+                            <img class="unfilled-favorite" src={unfilledfavorite} />
+                          </div>
+                        </div>
                         <h4 class="rating">Rating: {d.rating}</h4>
                         <p class="website"><a target="_blank" rel="noopener noreferrer" href={d.url}>Website</a></p>
                         <div class="restaurant-address"><p>{d?.location?.display_address}</p></div>
