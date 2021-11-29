@@ -207,51 +207,45 @@ function App() {
                   <div key={d.id} class="places">
                     <div class="places-content-wrapper">
                       <div class="restaurant-info-container">
-                        <div class="restaurant-info">
-                          <div class="restaurant-details">
-                            <h2 class="restaurant-name">{d.name}</h2>
-                            <div class="rating-and-website">
-                              <h4 class="rating">Rating: {d.rating}</h4>
-                              <p class="website"><a target="_blank" rel="noopener noreferrer" href={d.url}>Website</a></p>
-                            </div>
-                            <div class="restaurant-address"><p>{d?.location?.display_address}</p></div>
-                          </div>
-                          <div class="delivery-services-container">
-                            <div class="delivery-services">
-                              {d?.delivery_services?.UberEats !== undefined &&
-                                <p class="delivery-service">
-                                  <a target="_blank" rel="noopener noreferrer" href={d.delivery_services.UberEats}>
-                                    <img class="delivery-logo" src={ubereats_img} />
-                                  </a>
-                                </p>
-                              }
-                              {d?.delivery_services?.Grubhub !== undefined &&
-                                <p class="delivery-service">
-                                  <a target="_blank" rel="noopener noreferrer" href={d.delivery_services.Grubhub}>
-                                    <img class="delivery-logo" src={grubhub_img} />
-                                  </a>
-                                </p>
-                              }
-                              {d?.delivery_services?.Postmates !== undefined &&
-                                <p class="delivery-service">
-                                  <a target="_blank" rel="noopener noreferrer" href={d.delivery_services.Postmates}>
-                                    <img class="delivery-logo" src={postmates_img} />
-                                  </a>
-                                </p>
-                              }
-                              {d?.delivery_services?.DoorDash !== undefined &&
-                                <p class="delivery-service">
-                                  <a target="_blank" rel="noopener noreferrer" href={d.delivery_services.DoorDash}>
-                                    <img class="delivery-logo" src={doordash_img} />
-                                  </a>
-                                </p>
-                              }
-                            </div>
-                          </div>
-                        </div>
+                        <h2 class="restaurant-name">{d.name}</h2>
+                        <h4 class="rating">Rating: {d.rating}</h4>
+                        <p class="website"><a target="_blank" rel="noopener noreferrer" href={d.url}>Website</a></p>
+                        <div class="restaurant-address"><p>{d?.location?.display_address}</p></div>
                       </div>
                       <div class="restaurant-photo">
                         <img id="images" alt="Restaurant image from Yelp" src={d.image_url} />
+                      </div>
+                      <div class="delivery-services-container">
+                        <div class="delivery-services">
+                          {d?.delivery_services?.UberEats !== undefined &&
+                            <p class="delivery-service">
+                              <a target="_blank" rel="noopener noreferrer" href={d.delivery_services.UberEats}>
+                                <img class="delivery-logo" src={ubereats_img} />
+                              </a>
+                            </p>
+                          }
+                          {d?.delivery_services?.Grubhub !== undefined &&
+                            <p class="delivery-service">
+                              <a target="_blank" rel="noopener noreferrer" href={d.delivery_services.Grubhub}>
+                                <img class="delivery-logo" src={grubhub_img} />
+                              </a>
+                            </p>
+                          }
+                          {d?.delivery_services?.Postmates !== undefined &&
+                            <p class="delivery-service">
+                              <a target="_blank" rel="noopener noreferrer" href={d.delivery_services.Postmates}>
+                                <img class="delivery-logo" src={postmates_img} />
+                              </a>
+                            </p>
+                          }
+                          {d?.delivery_services?.DoorDash !== undefined &&
+                            <p class="delivery-service">
+                              <a target="_blank" rel="noopener noreferrer" href={d.delivery_services.DoorDash}>
+                                <img class="delivery-logo" src={doordash_img} />
+                              </a>
+                            </p>
+                          }
+                        </div>
                       </div>
                     </div>
                   </div>

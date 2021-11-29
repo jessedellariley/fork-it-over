@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
 body {
     margin: 0;
     padding: 0;
     background-color: #e9edf4;
     color: #3B457B;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Comfortaa', cursive;
 }
 
 li, a, button{
@@ -548,48 +548,36 @@ input[type=number] {
 }
 
 .results-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 .places-container {
-    flex: 1 1 500px;
     border: 1px solid #3B457B;
     border-radius: 25px;
     background-color: white;
     margin: 20px;
-    height: 250px;
+    height: 300px;
+    box-shadow: 0 0 18px #00000026;
+    min-width: 500px;
 }
 
 .places{
   color: #3B457B;
   text-align: left;
+  margin: 20px;
 }
 
 .places-content-wrapper {
-    margin: 20px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: flex-start;
+    display: grid;
+    grid-template-areas: 'restaurant-info restaurant-info restaurant-info restaurant-info restaurant-photo restaurant-photo'
+    'delivery-services delivery-services delivery-services delivery-services restaurant-photo restaurant-photo';
 }
 
 .restaurant-info-container {
-    flex: 1;
-    margin-right: 10px;
-}
-
-.restaurant-info {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: left;
-    align-items: flex-start;
-}
-
-.restaurant-details {
-    flex: 1;
+    margin-right: 25px;
+    grid-area: restaurant-info;
+    margin-left: 12px;
 }
 
 .restaurant-name {
@@ -600,32 +588,36 @@ input[type=number] {
     padding: 0;
 }
 
-.rating-and-website {
-    display: table;
-    min-width: 100%;
-}
-
 .rating {
     color: #3B457B;
-    display: table-cell;
+    margin: 0;
 }
 
 .website {
+    font-size: 10pt;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.website a:hover, a:active {
+    color: #D9669F;
+}
+
+.website a, a:visited {
     color: #3B457B;
-    display: table-cell;
 }
 
 .restaurant-address p {
-    color: #3B457B;
-    font-size: 12pt;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 10pt;
     font-weight: 300;
     margin: 0;
 }
 
 .delivery-services-container {
-    flex: 1;
-    margin: 0;
-    padding: 0;
+    grid-area: delivery-services;
+    margin-right: 40%;
 }
 
 .delivery-services {
@@ -645,8 +637,7 @@ input[type=number] {
 }
 
 .restaurant-photo {
-    flex: 1;
-    margin-left: 10px;
+    grid-area: restaurant-photo;
 }
 
 #images{
@@ -678,7 +669,7 @@ input[type=number] {
     width: 300px;
     height: 300px;
     margin-bottom: 25px;
-    margin-top: 75px;
+    margin-top: 50px;
 }
 
 .big-center-logo {
