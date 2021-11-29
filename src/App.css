@@ -547,37 +547,159 @@ input[type=number] {
     margin-top: 100px;
 }
 
+.results-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.places-container {
+    flex: 1 1 500px;
+    border: 1px solid #3B457B;
+    border-radius: 25px;
+    background-color: white;
+    margin: 20px;
+    height: 250px;
+}
+
 .places{
-  border: 1px solid white;
-  border-radius: 10px;
-  margin:10px;
+  color: #3B457B;
+  text-align: left;
+}
+
+.places-content-wrapper {
+    margin: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.restaurant-info-container {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.restaurant-info {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.restaurant-details {
+    flex: 1;
+}
+
+.restaurant-name {
+    color: #4f6cae;
+    font-size: 18pt;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+.rating-and-website {
+    display: table;
+    min-width: 100%;
+}
+
+.rating {
+    color: #3B457B;
+    display: table-cell;
+}
+
+.website {
+    color: #3B457B;
+    display: table-cell;
+}
+
+.restaurant-address p {
+    color: #3B457B;
+    font-size: 12pt;
+    font-weight: 300;
+    margin: 0;
+}
+
+.delivery-services-container {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.delivery-services {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.delivery-service {
+    flex: 1 1 35px;
+}
+
+.delivery-logo {
+    width: 75px;
+    margin-left: 15px;
+}
+
+.restaurant-photo {
+    flex: 1;
+    margin-left: 10px;
 }
 
 #images{
-  height:200px;
-  width:220px;
-  border-radius: 10%;
+    height:200px;
+    width:220px;
+    border-radius: 10%;
 }
 
-.grid_container {
-display: grid;
-grid-template-columns: auto auto;
-padding: 10px;
-margin:10px;
-justify-content: center;
-
+.search-page-before-results {
+    background-image: url("./SearchBackground.png");
+    background-size: cover;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-attachment: fixed;
 }
 
-.grid_item {
-border: 1px solid;
-justify-content: center;
-background-color: rgba(0,136,169,1);
-padding: 20px;
-text-align: center;
-margin:2px;
-border-radius: 10px;
+.searchbar-outer-container-no-results {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 48px;
+    margin-left: auto;
+    margin-right:auto;
+    margin-top: 0;
 }
 
-.grid_item:hover{
-  background-color: rgba(0,136,169,0.8);
+.big-center-logo-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 25px;
+    margin-top: 75px;
+}
+
+.big-center-logo {
+    width: 300px;
+    height: 300px;
+    margin: 0;
+    padding: 0;
+}
+
+.header-no-results {
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar-no-results {
+    flex: .05;
+    padding: 0 20px;
+}
+
+.account-no-results {
+    flex: .1;
 }
