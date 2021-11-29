@@ -52,9 +52,52 @@ function MyAccount() {
                 placeholder="Username"
               />
             </div>
+            <h2>My Address</h2>
+            <div className="input-icons">
+              <label htmlFor="address">Home:</label>
+              <i className="fa fa-close icon" />
+              <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="Home"
+              />
+            </div>
+            <div className="input-icons">
+              <label htmlFor="vacation">Vacation:</label>
+              <i className="fa fa-close icon" />
+              <input
+                type="text"
+                id="vacation"
+                name="vacation"
+                placeholder="Vacation"
+              />
+            </div>
+            <div className="input-icons">
+              <i className="fa fa-plus icon" />
+              <input
+                type="text"
+                id="address2"
+                name="address2"
+                placeholder="Add an Address"
+              />
+            </div>
+            <div className="button-container">
+              <button type="button" onClick={onUpdate}>
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className="center">
+          <span>{error}</span>
+        </div>
       </div>
     </div>
   );
 }
 
 export default MyAccount;
+
+
+
