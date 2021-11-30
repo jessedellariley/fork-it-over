@@ -1,118 +1,335 @@
+<!DOCTYPE html>
 <html>
 
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@700&display=swap');
 
-        body {
-            background-image: url('/build/static/media/Background.f39e0fae.png');
+        .landing-page-top-image-container {
+            background-image: url('https://drive.google.com/uc?export=view&id=1DHZQdHmRouaxeJ7Leu3zDd64E5FO5qhA');
             background-size: cover;
             min-width: 100vw;
-            min-height: 100vh;
-            background-attachment: fixed;
-            font-size: 15px;
-            font-family: 'Comfortaa', cursive;
+            height: 57vw;
+            display: table;
         }
 
-        .text {
-            width: 250px;
-            height: 40px;
-            border-radius: 10px;
-            border-color: #c7ee93;
-            border-style: solid;
-            outline: none;
-            font-size: 20px;
+        .header {
+            padding: 24px 40px 0;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
-        .btn {
-            width: 125px;
-            height: 35px;
-            border-radius: 25px;
-            border-width: 0px;
-            background: rgba(0, 136, 169, 1);
-            font-size: medium;
-            border-style: solid;
-            outline: none;
+        .logo-container {
+            flex: 1;
+            box-sizing: border-box;
+            display: table-cell;
+            vertical-align: middle;
+            height: 160px;
+            width: 160px;
+        }
+
+        .logo {
+            display: block;
+            height: 100%;
+            max-width: 160px;
+        }
+
+        .navbar {
+            flex: 1;
+            padding: 0px 20px;
+            vertical-align: middle;
+            font-family: 'Nunito', sans-serif;
+            font-size: 16pt;
+            letter-spacing: 2px;
+        }
+
+        .navbar-link-container {
+            margin-left: 8px;
+            margin-right: 8px;
+            padding-right: 8px;
+            float: right;
+        }
+
+        .navbar-link:link {
+            color: #0C0D0F;
+        }
+
+        .navbar-link:visited {
+            color: #0C0D0F;
+        }
+
+        .navbar-link:hover {
+            color: #D9669F;
+        }
+
+        .navbar-link:active {
+            color: #D9669F;
+        }
+
+        .navbar-link-title-padding {
             cursor: pointer;
-            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
-            font-weight: bold;
+            padding: 8px;
         }
 
-        .btn:hover {
-            background-color: rgba(0, 136, 169, 0.8);
+        .navbar-link-title-container {
+            display: inline-block;
+            position: relative;
         }
 
-        img {
+        .navbar-link-title {
+            font-family: 'Nunito', sans-serif;
+            line-height: 20px;
+            text-align: left;
+        }
+
+        .content-container {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .landing-page-info {
+            margin: 30px;
+            margin-top: 0;
+            width: 27%;
+            line-height: 2em;
+            font-weight: 600;
+        }
+
+        .landing-page-info h1 {
+            letter-spacing: 3px;
+            font-size: 28pt;
+            line-height: 1em;
+        }
+
+        .sign-up {
+            margin: 30px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: white;
+            color: #131d38;
             border-radius: 25px;
+            box-shadow: 0 0 18px #00000026;
+            width: 27%;
+            overflow: hidden;
         }
 
-        audio {
-            padding-bottom: 30px;
+        .sign-up h2 {
+            font-size: 24pt;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .labels {
+            text-align: left;
+            margin-left: 30px;
+        }
+
+        .username-password {
+            font-size: 14pt;
+            background-color: white;
+            border: 1pt solid #131d38;
+            border-radius: 35px;
+            padding: 15px;
+            padding-left: 25px;
+            padding-right: 25px;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            font-family: 'Comfortaa', cursive;
+            width: 80%;
+        }
+
+        #togglePassword {
+            margin-left: 30px;
+        }
+
+        .button {
+            font-size: 14pt;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            padding: 15px;
+            background-color: #3B457B;
+            color: white;
+            border: none;
+            border-radius: 35px;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        .landing-page-content-container {
+            background-color: #131d38;
+            display: table;
+            min-width: 100vw;
+            color: #e9edf4;
+        }
+
+        .landing-page-another-content-container {
+            background-color: #e9edf4;
+            display: table;
+            min-width: 100vw;
+            color: #131d38;
+        }
+
+        .landing-page-another-content-1-container {
+            background-color: #d9669f;
+            display: table;
+            min-width: 100vw;
+            color: #e9edf4;
+        }
+
+        .landing-page-another-content-2-container {
+            background-color: #f9dd6a;
+            display: table;
+            min-width: 100vw;
+            color: #131d38;
+        }
+
+        .landing-page-another-content-3-container {
+            background-color: #131d38;
+            display: table;
+            min-width: 100vw;
+            color: #e9edf4;
+        }
+
+        .landing-page-another-content-4-container {
+            background-color: #f9dd6a;
+            display: table;
+            min-width: 100vw;
+            color: #131d38;
+        }
+
+        .footer {
+            background-color: #e9edf4;
+            display: table;
+            min-width: 100vw;
+            color: #131d38;
+        }
+
+        body {
+            font-size: 12pt;
+            font-family: 'Comfortaa', cursive;
+            margin: 0;
+            background-color: #e9edf4
         }
 
         .flashes {
-            color: #ff3355
-        }
-
-        a {
-            color: #ff3355
-        }
-
-        #check-box {
-            margin-bottom: -10px;
-        }
-
-        #link1 {
-            font-size: 18px;
+            color: #ff3355;
+            margin: 0;
+            margin-left: 15px;
+            margin-bottom: 5px;
+            text-align: left;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="container">
-
-        <h2>Create an account!</h2>
-        <br>
-        <div class="wrapper">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul id="flashes" class=flashes>
-                {% for message in messages %}
-                <p>{{ message }}</p>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
-            <form method="POST" action="/signup">
-                <p class="textbox">Username</p>
-                <input type="email" name="username"
-                    pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*"
-                    placeholder="Email..." minlength="8" maxlength="30" required class="text">
+    <div class="landing-page-top-image-container">
+        <div class="header">
+            <div class="logo-container">
+                <img class="logo" src="https://drive.google.com/uc?export=view&id=1coLvgVX_r6fsZqwIUD0AcrYvshu9VL3R">
+            </div>
+            <div class="navbar">
+                <span class="navbar-link-container">
+                    <a href="/login" class="navbar-link">
+                        <div class="navbar-link-title-padding">
+                            <div class="navbar-link-title-container">
+                                <p class="navbar-link-title">LOG IN</p>
+                            </div>
+                        </div>
+                    </a>
+                </span>
+                <span class="navbar-link-container">
+                    <a href="/about" class="navbar-link">
+                        <div class="navbar-link-title-padding">
+                            <div class="navbar-link-title-container">
+                                <p class="navbar-link-title">ABOUT</p>
+                            </div>
+                        </div>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="landing-page-info">
+                <h1>Find Your New Delivery Spot</h1>
+                <p>Fork It Over will find the best restaurants that offer
+                    what you're craving and then link you directly to their page on your favorite delivery
+                    app or site. You can even check for restaurants that are open now to make sure the restaurant is as
+                    ready for you as you are for them. Sign up now to use our search tool. It's 100% free,
+                    no premium memberships or upgrades needed.
+                </p>
+            </div>
+            <div class="sign-up">
+                <h2>Sign Up-it's free</h2>
                 <br>
-                <p class="textbox">Password</p>
-                <input placeholder="Password..." type="password" name="password" required class="text" id="password" />
-                <p id="check-box"><input type="checkbox" id="togglePassword">Show Password </input></p>
-
-                <script>
-                    const togglePassword = document.querySelector('#togglePassword');
-                    const password = document.querySelector('#password');
-                    togglePassword.addEventListener('click', function (e) {
-                        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                        password.setAttribute('type', type);
-                    });
-                </script>
-                <br><br>
-                <button class="btn">Signup</button><br>
-                <p>
-                    Already Signed up before?<br> <br> <a id="link1" href="/login"> Go back to login</a>
-                <p>
-            </form>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p class="flashes">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <form method="POST" action="/signup">
+                    <label for="username" class="labels">Username</label>
+                    <br>
+                    <input type="text" name="username" id="username" placeholder="Username" minlength="8" maxlength="30"
+                        required class="username-password" />
+                    <br>
+                    <label for="password" class="labels">Password</label>
+                    <br>
+                    <input placeholder="Password" type="password" name="password" required class="username-password"
+                        id="password" />
+                    <br>
+                    <input type="checkbox" id="togglePassword">Show Password</input>
+                    <script>
+                        const togglePassword = document.querySelector('#togglePassword');
+                        const password = document.querySelector('#password');
+                        togglePassword.addEventListener('click', function (e) {
+                            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                            password.setAttribute('type', type);
+                        });
+                    </script>
+                    <br><br>
+                    <button class="button">SIGN UP</button><br>
+                </form>
+            </div>
         </div>
     </div>
-
+    <div class="landing-page-content-container">
+        <h1>something else</h1>
+        <p>more stuff</p>
+    </div>
+    <div class="landing-page-another-content-container">
+        <h1>something else</h1>
+        <p>more stuff</p>
+    </div>
+    <div class="landing-page-another-content-1-container">
+        <h1>something else</h1>
+        <p>more stuff</p>
+    </div>
+    <div class="landing-page-another-content-2-container">
+        <h1>something else</h1>
+        <p>more stuff</p>
+    </div>
+    <div class="landing-page-another-content-3-container">
+        <h1>something else</h1>
+        <p>more stuff</p>
+    </div>
+    <div class="landing-page-another-content-4-container">
+        <h1>something else</h1>
+        <p>more stuff</p>
+    </div>
+    <div class="footer">
+        <h1>something else</h1>
+        <p>more stuff</p>
+    </div>
 </body>
 
 </html>
