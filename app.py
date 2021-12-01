@@ -186,6 +186,9 @@ def food_places():
         if business["rating"] < 4:
             data["businesses"].remove(business)
     data = refine_results_by_delivery(data)
+    if data == "":
+        return flask.jsonify({"status": 401, "reason": "Invalid Search Inputs Error"})
+
     return flask.jsonify({"flaskData": data})
 
 

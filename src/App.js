@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import logo from './Logo_LightBG.png';
 import account from './account.png';
 import unfilledfavorite from './unfilledfavorite.png';
+import spinner from './loading.gif'
 import accountdropdown from './account-dropdown.png';
 import logout from './logout.png';
 import searchbutton from './searchbutton.png';
@@ -18,24 +19,36 @@ function App() {
   const [inputs, setInputs] = useState([]);
   const [result, setResult] = useState([]);
   const [message, setMessage] = useState([]);
+  const [loading, setSpinner] = useState([]);
+  const [errorMessage, setErrorMessage] = useState([]);
+
 
   const foodInput = useRef(null);
   const addressInput = useRef(null);
   const radiusInput = useRef(null);
 
   function onSavedUser() {
+    setMessage([])
+    setErrorMessage([])
     let food = foodInput.current.value;
     let address = addressInput.current.value;
     let radius = radiusInput.current.value;
 
-    if (food.length === 0 || address.length === 0 || radius.length === 0) {
+   if (food.length === 0 || address.length === 0 || radius.length === 0) {
       alert("One or more fields are empty");
       return false;
-    }
+    } 
+
+    let errorText = "Oops...Please enter valid information in the fields!"
+    let addErrorMessage = [...errorMessage, errorText]
 
     let text = "Loading...Please wait patiently!"
     let addMessage = [...message, text]
     setMessage(addMessage)
+
+    let load = spinner
+    let addSpinner = [...loading, load]
+    setSpinner(addSpinner)
 
     let addInputs = [...inputs, food, address, radius]
     setInputs(addInputs);
@@ -54,8 +67,19 @@ function App() {
       radiusInput.current.value = "";
       console.log(data)
       setMessage([])
+      setSpinner([])
+      setErrorMessage([])
       setResult(data)
+    }).catch((er) => {
+      console.log(er);
+      foodInput.current.value = "";
+      addressInput.current.value = "";
+      radiusInput.current.value = "";
+      setMessage([])
+      setSpinner([])
+      setErrorMessage(addErrorMessage)
     });
+    
   }
   return (
     <div>
@@ -202,6 +226,14 @@ function App() {
           </div >
           <div class="results">
             <h1 id="message" data-testid="loading">{message}</h1>
+            <h1 id="message" data-testid="loading">{errorMessage}</h1>
+              <div className="logo-wrapper">
+                <img src={loading} />
+            </div>
+
+
+            {/* <img id="loadingIcon" src={loading}></img> */}
+
             <div class="results-container">
               {result.flaskData.businesses.sort((a, b) => b.rating - a.rating).map((d) => (
                 <div class="places-container">
@@ -214,7 +246,7 @@ function App() {
                             <img class="unfilled-favorite" src={unfilledfavorite} />
                           </div>
                         </div>
-                        <h4 class="rating">Rating: {d.rating}</h4>
+                        <h4 class="rating">Rating: {d.rating} stars out of {d.review_count} reviews</h4>
                         <p class="website"><a target="_blank" rel="noopener noreferrer" href={d.url}>Website</a></p>
                         <div class="restaurant-address"><p>{d?.location?.display_address}</p></div>
                       </div>
@@ -394,9 +426,18 @@ function App() {
               </div>
             </div>
           </div>
+          <h1 id="message" data-testid="loading">{message}</h1>
+            <div className="logo-wrapper">
+              <img src={loading} />
+            </div>
+            <h1 id="message" data-testid="loading">{errorMessage}</h1>
+
+     
         </div>
+
       )
       }
+
     </div>
   );
 }
