@@ -12,7 +12,6 @@ import ubereats_img from './ubereats.png';
 import grubhub_img from './grubhub.png';
 import doordash_img from './doordash.png';
 import postmates_img from './postmates.png';
-import background from './Background.png';
 import filledfavorite from './filledfavorite.png';
 
 function App() {
@@ -34,10 +33,10 @@ function App() {
     let address = addressInput.current.value;
     let radius = radiusInput.current.value;
 
-   if (food.length === 0 || address.length === 0 || radius.length === 0) {
+    if (food.length === 0 || address.length === 0 || radius.length === 0) {
       alert("One or more fields are empty");
       return false;
-    } 
+    }
 
     let errorText = "Oops...Please enter valid information in the fields!"
     let addErrorMessage = [...errorMessage, errorText]
@@ -79,7 +78,7 @@ function App() {
       setSpinner([])
       setErrorMessage(addErrorMessage)
     });
-    
+
   }
   return (
     <div>
@@ -121,7 +120,9 @@ function App() {
                               <div class="searchbar-button-inner-container">
                                 <button class="searchbar-button" onClick={onSavedUser}>
                                   <span class="searchbar-button-image-wrapper">
-                                    <img class="searchbar-button-image" src={searchbutton} />
+                                    {message.length == 0 ?
+                                      (<img class="searchbar-button-image" src={searchbutton} />) :
+                                      (<img class="searchbar-button-image" src={spinner} />)}
                                   </span>
                                 </button>
                               </div>
@@ -225,15 +226,7 @@ function App() {
             </div>
           </div >
           <div class="results">
-            <h1 id="message" data-testid="loading">{message}</h1>
             <h1 id="message" data-testid="loading">{errorMessage}</h1>
-              <div className="logo-wrapper">
-                <img src={loading} />
-            </div>
-
-
-            {/* <img id="loadingIcon" src={loading}></img> */}
-
             <div class="results-container">
               {result.flaskData.businesses.sort((a, b) => b.rating - a.rating).map((d) => (
                 <div class="places-container">
@@ -246,7 +239,7 @@ function App() {
                             <img class="unfilled-favorite" src={unfilledfavorite} />
                           </div>
                         </div>
-                        <h4 class="rating">Rating: {d.rating} stars out of {d.review_count} reviews</h4>
+                        <h4 class="rating">Rating: {d.rating} ({d.review_count})</h4>
                         <p class="website"><a target="_blank" rel="noopener noreferrer" href={d.url}>Website</a></p>
                         <div class="restaurant-address"><p>{d?.location?.display_address}</p></div>
                       </div>
@@ -415,7 +408,9 @@ function App() {
                         <div class="searchbar-button-inner-container">
                           <button class="searchbar-button" onClick={onSavedUser}>
                             <span class="searchbar-button-image-wrapper">
-                              <img class="searchbar-button-image" src={searchbutton} />
+                              {message.length == 0 ?
+                                (<img class="searchbar-button-image" src={searchbutton} />) :
+                                (<img class="searchbar-button-image" src={spinner} />)}
                             </span>
                           </button>
                         </div>
@@ -426,15 +421,8 @@ function App() {
               </div>
             </div>
           </div>
-          <h1 id="message" data-testid="loading">{message}</h1>
-            <div className="logo-wrapper">
-              <img src={loading} />
-            </div>
-            <h1 id="message" data-testid="loading">{errorMessage}</h1>
-
-     
+          <h1 id="message" data-testid="loading">{errorMessage}</h1>
         </div>
-
       )
       }
 
