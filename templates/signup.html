@@ -1,118 +1,784 @@
+<!DOCTYPE html>
 <html>
 
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@700&display=swap');
 
-        body {
-            background-image: url('/build/static/media/Background.f39e0fae.png');
+        .landing-page-top-image-container {
+            background-image: url('https://drive.google.com/uc?export=view&id=1DHZQdHmRouaxeJ7Leu3zDd64E5FO5qhA');
             background-size: cover;
             min-width: 100vw;
-            min-height: 100vh;
-            background-attachment: fixed;
-            font-size: 15px;
-            font-family: 'Comfortaa', cursive;
+            height: 57vw;
+            display: table;
         }
 
-        .text {
-            width: 250px;
-            height: 40px;
-            border-radius: 10px;
-            border-color: #c7ee93;
-            border-style: solid;
-            outline: none;
-            font-size: 20px;
+        .header {
+            padding: 24px 40px 0;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
-        .btn {
-            width: 125px;
-            height: 35px;
-            border-radius: 25px;
-            border-width: 0px;
-            background: rgba(0, 136, 169, 1);
-            font-size: medium;
-            border-style: solid;
-            outline: none;
+        h1 {
+            text-shadow: 0 1px #00000026;
+        }
+
+        .logo-container {
+            flex: 1;
+            box-sizing: border-box;
+            display: table-cell;
+            vertical-align: middle;
+            height: 160px;
+            width: 160px;
+        }
+
+        .logo {
+            display: block;
+            height: 100%;
+            max-width: 160px;
+        }
+
+        .navbar {
+            flex: 1;
+            padding: 0px 20px;
+            vertical-align: middle;
+            font-family: 'Nunito', sans-serif;
+            font-size: 16pt;
+            letter-spacing: 2px;
+        }
+
+        .navbar-link-container {
+            margin-left: 8px;
+            margin-right: 8px;
+            padding-right: 8px;
+            float: right;
+        }
+
+        .navbar-link:link {
+            color: #0C0D0F;
+        }
+
+        .navbar-link:visited {
+            color: #0C0D0F;
+        }
+
+        .navbar-link:hover {
+            color: #D9669F;
+        }
+
+        .navbar-link:active {
+            color: #D9669F;
+        }
+
+        .navbar-link-title-padding {
             cursor: pointer;
-            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
-            font-weight: bold;
+            padding: 8px;
         }
 
-        .btn:hover {
-            background-color: rgba(0, 136, 169, 0.8);
+        .navbar-link-title-container {
+            display: inline-block;
+            position: relative;
         }
 
-        img {
+        .navbar-link-title {
+            font-family: 'Nunito', sans-serif;
+            line-height: 20px;
+            text-align: left;
+        }
+
+        .content-container {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .landing-page-info {
+            margin: 30px;
+            margin-top: 0;
+            width: 27%;
+            line-height: 2em;
+            font-weight: 600;
+        }
+
+        .landing-page-info h1 {
+            letter-spacing: 3px;
+            font-size: 28pt;
+            line-height: 1em;
+        }
+
+        .sign-up {
+            margin: 30px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: white;
+            color: #131d38;
             border-radius: 25px;
+            box-shadow: 0 0 18px #00000026;
+            width: 27%;
+            overflow: hidden;
         }
 
-        audio {
-            padding-bottom: 30px;
+        .sign-up h2 {
+            font-size: 24pt;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .labels {
+            text-align: left;
+            margin-left: 30px;
+        }
+
+        .username-password {
+            font-size: 14pt;
+            background-color: white;
+            border: 1pt solid #131d38;
+            border-radius: 35px;
+            padding: 15px;
+            padding-left: 25px;
+            padding-right: 25px;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            font-family: 'Comfortaa', cursive;
+            width: 80%;
+        }
+
+        #togglePassword {
+            margin-left: 30px;
+        }
+
+        .button {
+            font-size: 14pt;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            padding: 15px;
+            background-color: #3B457B;
+            color: white;
+            border: none;
+            border-radius: 35px;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        .your-new-favorite-container {
+            background-color: #131d38;
+            display: table;
+            min-width: 100vw;
+            color: #e9edf4;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .your-new-favorite-flex {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .your-new-favorite-text {
+            width: 40%;
+            margin: 10px;
+            font-size: 14pt;
+        }
+
+        .your-new-favorite-text h1 {
+            line-height: 1em;
+            font-weight: bold;
+            font-size: 24pt;
+        }
+
+        .your-new-favorite-text p {
+            padding: 20px 20px 20px 15px;
+            margin: 0;
+        }
+
+        #your-new-favorite-filled {
+            background-color: #3B457B;
+            box-shadow: 0 0 18px #00000026;
+        }
+
+        .your-new-favorite-image {
+            width: 40%;
+            margin-left: 5vw;
+            margin-top: 3vw;
+        }
+
+        .your-new-favorite-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .stories-from-real-people-container {
+            background-color: #e9edf4;
+            display: table;
+            min-width: 0;
+            color: #131d38;
+            padding: 100px;
+        }
+
+        .review-flex {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .review {
+            text-align: left;
+        }
+
+        .right-review {
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .review-inner-flex {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .review-inner-flex-right {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+
+        .review-text {
+            color: #3B457B;
+            width: 70%;
+        }
+
+        .review-icon {
+            margin-left: 20px;
+            margin-right: 20px;
+            width: 80px;
+        }
+
+        .review-icon img {
+            width: 80px;
+            height: auto;
+        }
+
+        .quote {
+            font-size: 14pt;
+        }
+
+        .name {
+            margin-left: auto;
+        }
+
+        .statistics-container {
+            background-color: #d9669f;
+            display: block;
+            color: #e9edf4;
+            padding: 40px;
+        }
+
+        .statistics-flex {
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .statistics-header {
+            flex: 2;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 50px;
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+
+        .statistic {
+            font-size: 14pt;
+            font-weight: bold;
+            line-height: 0;
+            flex: 1;
+            margin-right: auto;
+        }
+
+        .number {
+            font-size: 30pt;
+        }
+
+        .order-in-container {
+            background-color: #f9dd6a;
+            display: block;
+            min-width: 0;
+            color: #131d38;
+            padding: 100px;
+        }
+
+        .order-in-flex {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .order-in-text {
+            flex: 1;
+            padding: 25px;
+            padding-left: 25px;
+            padding-right: 200px;
+            font-size: 16pt;
+            padding-top: 0;
+        }
+
+        .order-in-logos {
+            flex: 1;
+            padding: 25px;
+        }
+
+        .order-in-logos-grid {
+            display: grid;
+            grid-template-areas: "uber-eats grubhub"
+                "postmates doordash";
+            width: 100%;
+            grid-gap: 40px;
+        }
+
+        .order-in-logos-grid img {
+            width: 120px;
+            height: auto;
+        }
+
+        .uber-eats {
+            grid-area: uber-eats;
+        }
+
+        .grubhub {
+            grid-area: grubhub;
+        }
+
+        .postmates {
+            grid-area: postmates;
+        }
+
+        .doordash {
+            grid-area: doordash;
+        }
+
+        .designed-with-apps-container {
+            background-color: #131d38;
+            display: table;
+            min-width: 100%;
+            color: #e9edf4;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .designed-with-apps-flex {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .designed-with-apps-text {
+            width: 40%;
+            margin: 40px;
+            font-size: 14pt;
+        }
+
+        .designed-with-apps-text h1 {
+            line-height: 1em;
+            font-weight: bold;
+            font-size: 24pt;
+            margin-left: 200px;
+        }
+
+        .designed-with-apps-image {
+            width: 40%;
+            margin-right: 200px;
+        }
+
+        .designed-with-apps-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .start-for-free-container {
+            background-color: #f9dd6a;
+            display: table;
+            min-width: 100%;
+            color: #131d38;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .start-for-free-flex {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .start-for-free-text {
+            width: 40%;
+            margin: 40px;
+            font-size: 14pt;
+        }
+
+        .start-for-free-text h1 {
+            line-height: 1em;
+            font-weight: bold;
+            font-size: 24pt;
+            margin-top: 50px;
+        }
+
+        .start-for-free-text-sign-up {
+            padding-right: 250px;
+        }
+
+        .start-for-free-text button {
+            margin-left: 0;
+        }
+
+        .start-for-free-image {
+            width: 40%;
+            margin-left: 5vw;
+            margin-top: 3vw;
+        }
+
+        .start-for-free-image img {
+            width: 200px;
+            height: auto;
+        }
+
+        #we-dont-narrow {
+            color: #d9669f;
+            margin-top: 0px;
+        }
+
+        .we-dont-narrow {
+            font-size: 18pt;
+            letter-spacing: 3px;
+            line-height: 40px;
+            padding-right: 100px;
+        }
+
+        #food-you-want-now {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .footer-container {
+            background-color: #e9edf4;
+            display: block;
+            min-width: 0;
+            color: #131d38;
+            padding: 5px;
+        }
+
+        .footer-flex {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            border-top: 1pt solid #131d38;
+            margin-top: 5px;
+        }
+
+        .footer-text {
+            width: 50%;
+            font-size: 10pt;
+            margin-left: 100px;
+            border-left: 1pt solid #131d38;
+            padding-left: 10px;
+        }
+
+        .footer-text a,
+        a:visited {
+            color: #0C0D0F;
+        }
+
+        .footer-text a:hover,
+        a:active {
+            color: #D9669F;
+        }
+
+        .footer-logo {
+            width: 150px;
+            padding-left: 20px;
+        }
+
+        .footer-logo img {
+            width: 100px;
+            height: 100px;
+        }
+
+        body {
+            font-size: 12pt;
+            font-family: 'Comfortaa', cursive;
+            margin: 0;
+            background-color: #e9edf4
         }
 
         .flashes {
-            color: #ff3355
-        }
-
-        a {
-            color: #ff3355
-        }
-
-        #check-box {
-            margin-bottom: -10px;
-        }
-
-        #link1 {
-            font-size: 18px;
+            color: #ff3355;
+            margin: 0;
+            margin-left: 15px;
+            margin-bottom: 5px;
+            text-align: left;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="container">
-
-        <h2>Create an account!</h2>
-        <br>
-        <div class="wrapper">
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul id="flashes" class=flashes>
-                {% for message in messages %}
-                <p>{{ message }}</p>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
-            <form method="POST" action="/signup">
-                <p class="textbox">Username</p>
-                <input type="email" name="username"
-                    pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*"
-                    placeholder="Email..." minlength="8" maxlength="30" required class="text">
+    <div class="landing-page-top-image-container">
+        <div class="header">
+            <div class="logo-container">
+                <img class="logo" src="https://drive.google.com/uc?export=view&id=1coLvgVX_r6fsZqwIUD0AcrYvshu9VL3R">
+            </div>
+            <div class="navbar">
+                <span class="navbar-link-container">
+                    <a href="/login" class="navbar-link">
+                        <div class="navbar-link-title-padding">
+                            <div class="navbar-link-title-container">
+                                <p class="navbar-link-title">LOG IN</p>
+                            </div>
+                        </div>
+                    </a>
+                </span>
+                <span class="navbar-link-container">
+                    <a href="/about" class="navbar-link">
+                        <div class="navbar-link-title-padding">
+                            <div class="navbar-link-title-container">
+                                <p class="navbar-link-title">ABOUT</p>
+                            </div>
+                        </div>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="landing-page-info">
+                <h1>Find Your New Delivery Spot</h1>
+                <p>Fork It Over will find the best restaurants that offer
+                    what you're craving and then link you directly to their page on your favorite delivery
+                    app or site. You can even check for restaurants that are open now to make sure the restaurant is as
+                    ready for you as you are for them. Sign up now to use our search tool. It's 100% free,
+                    no premium memberships or upgrades needed.
+                </p>
+            </div>
+            <div class="sign-up">
+                <h2>Sign Up-it's free</h2>
                 <br>
-                <p class="textbox">Password</p>
-                <input placeholder="Password..." type="password" name="password" required class="text" id="password" />
-                <p id="check-box"><input type="checkbox" id="togglePassword">Show Password </input></p>
-
-                <script>
-                    const togglePassword = document.querySelector('#togglePassword');
-                    const password = document.querySelector('#password');
-                    togglePassword.addEventListener('click', function (e) {
-                        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                        password.setAttribute('type', type);
-                    });
-                </script>
-                <br><br>
-                <button class="btn">Signup</button><br>
-                <p>
-                    Already Signed up before?<br> <br> <a id="link1" href="/login"> Go back to login</a>
-                <p>
-            </form>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p class="flashes">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <form method="POST" action="/signup">
+                    <label for="username" class="labels">Username</label>
+                    <br>
+                    <input type="text" name="username" id="username" placeholder="Username" minlength="8" maxlength="30"
+                        required class="username-password" />
+                    <br>
+                    <label for="password" class="labels">Password</label>
+                    <br>
+                    <input placeholder="Password" type="password" name="password" required class="username-password"
+                        id="password" />
+                    <br>
+                    <input type="checkbox" id="togglePassword">Show Password</input>
+                    <script>
+                        const togglePassword = document.querySelector('#togglePassword');
+                        const password = document.querySelector('#password');
+                        togglePassword.addEventListener('click', function (e) {
+                            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                            password.setAttribute('type', type);
+                        });
+                    </script>
+                    <br><br>
+                    <button class="button">SIGN UP</button><br>
+                </form>
+            </div>
         </div>
     </div>
-
+    <div class="your-new-favorite-container">
+        <div class="your-new-favorite-flex">
+            <div class="your-new-favorite-text">
+                <h1>Your new favorite restaurants, delivered to you</h1>
+                <p id="your-new-favorite-filled">Interactive search tool with your hunger in mind</p>
+                <p>Get the cuisine you want, from the best</p>
+                <p>Designed to link your favorite delivery apps</p>
+                <p>Faster discover time = earlier eating time</p>
+            </div>
+            <div class="your-new-favorite-image">
+                <img src="https://drive.google.com/uc?export=view&id=1g5QtD6cydYi44ZLwubmJTnx092vmPywm" />
+            </div>
+        </div>
+    </div>
+    <div class="stories-from-real-people-container">
+        <h1>Stories from real people</h1>
+        <div class="review-flex">
+            <div class="review left-review">
+                <div class="review-inner-flex">
+                    <div class="review-text">
+                        <p class="quote">"I've always wanted a 'where-to-watch' but for delivery, and I've never found
+                            one.
+                            Fork It Over can do that and more. I've found so many new restaurants that I never
+                            knew were in my area, and they're so good!"</p>
+                        <p>- Jesse Riley</p>
+                    </div>
+                    <div class="review-icon">
+                        <img src="https://drive.google.com/uc?export=view&id=14IilF0Hpmo2PuPOEr8UXbccA_HrVVC6Y">
+                    </div>
+                </div>
+            </div>
+            <div class="review right-review">
+                <div class="review-inner-flex-right">
+                    <div class="review-icon">
+                        <img src="https://drive.google.com/uc?export=view&id=1c7Eq_7bD4UJA_JAmuZWDohAvnTzTCi_s" />
+                    </div>
+                    <div class="review-text review-text-right">
+                        <div class="quote">
+                            <p>"This is exactly what I was looking for. I recently moved to Atlanta and was looking
+                                through
+                                all my delivery apps to find restaurants nearby, and this app makes it so much easier! I
+                                don't
+                                have to waste my time clicking through different restaurants on my delivery apps and
+                                then
+                                searching
+                                for their
+                                ratings online to see if they're actually good. Now I can eat faster and better!"</p>
+                        </div>
+                        <div class="name">
+                            <p>- Gine&eacute; Scott</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review left-review">
+                <div class="review-inner-flex">
+                    <div class="review-text">
+                        <div class="quote">
+                            "I've been bored with what's around me for delivery, and I wanted new places to try.
+                            Fork It
+                            Over
+                            helped so much - I have found three new favorites since I started using it, and I'm so
+                            excited for
+                            my friends to try them!"
+                        </div>
+                        <div class="name">
+                            <p>- Sabatani Shetu</p>
+                        </div>
+                    </div>
+                    <div class="review-icon">
+                        <img src="https://drive.google.com/uc?export=view&id=1sa80WD8aUwuuPgenmvMwKb1SHM2rV3_p" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="statistics-container">
+        <div class="statistics-flex">
+            <h1 class="statistics-header">A search that gives you what you're looking for</h1>
+            <div class="statistic">
+                <p>Based on</p>
+                <p class="number">71M</p>
+                <p>reviews</p>
+            </div>
+            <div class="statistic">
+                <p class="number">600K</p>
+                <p>restaurants</p>
+            </div>
+            <div class="statistic">
+                <p class="number">6K</p>
+                <p>cities</p>
+            </div>
+        </div>
+    </div>
+    <div class="order-in-container">
+        <div class="order-in-flex">
+            <div class="order-in-text">
+                <h1>Order in for your next party or movie night</h1>
+                <p>Check if your favorite in-person restaurants offer delivery through one of the
+                    four major apps.
+                </p>
+            </div>
+            <div class="order-in-logos">
+                <div class=order-in-logos-grid>
+                    <a href="https://www.ubereats.com/"><img
+                            src="https://drive.google.com/uc?export=view&id=19lqTKWPU0__vSteNukcKrlwLDU0WQ1og"></a>
+                    <a href="https://www.grubhub.com/"><img
+                            src="https://drive.google.com/uc?export=view&id=1ARsXt9FtKVbn0vxDdc5iHs_pQ9xjvarC"></a>
+                    <a href="https://postmates.com/"><img
+                            src="https://drive.google.com/uc?export=view&id=1jxOf8J4NUTrkyaSN8GKdcSgbVM4LX6FQ"></a>
+                    <a href="https://www.doordash.com/"><img
+                            src="https://drive.google.com/uc?export=view&id=10SgskUjG4faY9GRmwksSdJuBF-mBDYlc"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="designed-with-apps-container">
+        <div class="designed-with-apps-flex">
+            <div class="designed-with-apps-text">
+                <h1>Direct links</h1>
+                <h1>to the</h1>
+                <h1>delivery pages</h1>
+                <h1>you want.</h1>
+            </div>
+            <div class="designed-with-apps-image">
+                <img src="https://drive.google.com/uc?export=view&id=15xCFbf_nNZef2x_YfKoQzWvWWloBvrOE" />
+            </div>
+        </div>
+    </div>
+    <div class="start-for-free-container">
+        <div class="start-for-free-flex">
+            <div class="start-for-free-text">
+                <h1 id="we-dont-narrow">We don't narrow your results unless you ask.</h1>
+                <p class="we-dont-narrow">Delivery apps have algorithms for what they show you on your home page,
+                    and that's okay. They're trying to bring you the food you'd want most,
+                    based on your past orders. But <span id="food-you-want-now">we bring you
+                        the food you want now.</span> Just tell us what you're craving, and we'll get
+                    you the best.</p>
+            </div>
+            <div class="start-for-free-text">
+                <h1>Start for free</h1>
+                <p class="start-for-free-text-sign-up">If you've made it this far, you must be at least a little bit
+                    hungry.</p>
+                <p class="start-for-free-text-sign-up">Sign up and take the first step towards new food adventures.</p>
+                <button class="button">Sign Up</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer-container">
+        <div class="footer-flex">
+            <div class="footer-logo">
+                <img src="https://drive.google.com/uc?export=view&id=1coLvgVX_r6fsZqwIUD0AcrYvshu9VL3R" />
+            </div>
+            <div class="footer-text">
+                <p class="footer-header">RESOURCES</p>
+                <a href="about.html">
+                    <p>About</p>
+                </a>
+                <a href="login.html">
+                    <p>Log in</p>
+                </a>
+                <a href="signup.html">
+                    <p>Sign Up</p>
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
