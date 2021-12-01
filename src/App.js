@@ -113,7 +113,7 @@ function App() {
                     <a href="#" class="navbar-link">
                       <div class="navbar-link-title-padding">
                         <div class="navbar-link-title-container">
-                          <p class="navbar-link-title">About</p>
+                          <p class="navbar-link-title">ABOUT</p>
                         </div>
                       </div>
                     </a>
@@ -268,7 +268,7 @@ function App() {
                 <a href="#" class="navbar-link">
                   <div class="navbar-link-title-padding">
                     <div class="navbar-link-title-container">
-                      <p class="navbar-link-title">About</p>
+                      <p class="navbar-link-title">ABOUT</p>
                     </div>
                   </div>
                 </a>
@@ -279,7 +279,7 @@ function App() {
                 <a href="#" class="navbar-link">
                   <div class="navbar-link-title-padding">
                     <div class="navbar-link-title-container">
-                      <p class="navbar-link-title">Favorites</p>
+                      <p class="navbar-link-title">FAVORITES</p>
                     </div>
                   </div>
                 </a>

@@ -163,18 +163,85 @@
             padding-right: 40px;
         }
 
-        .landing-page-content-container {
+        .your-new-favorite-container {
             background-color: #131d38;
             display: table;
             min-width: 100vw;
             color: #e9edf4;
+            padding-top: 40px;
+            padding-bottom: 40px;
         }
 
-        .landing-page-another-content-container {
+        .your-new-favorite-flex {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .your-new-favorite-text {
+            width: 40%;
+            margin: 10px;
+            font-size: 14pt;
+        }
+
+        .your-new-favorite-text h1 {
+            line-height: 1em;
+            font-weight: bold;
+            font-size: 24pt;
+        }
+
+        .your-new-favorite-text p {
+            padding: 20px 20px 20px 15px;
+            margin: 0;
+        }
+
+        #your-new-favorite-filled {
+            background-color: #3B457B;
+        }
+
+        .your-new-favorite-image {
+            width: 40%;
+            margin-left: 5vw;
+            margin-top: 5vw;
+        }
+
+        .your-new-favorite-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .stories-from-real-people-container {
             background-color: #e9edf4;
             display: table;
-            min-width: 100vw;
+            min-width: 100%;
             color: #131d38;
+            padding: 25px;
+        }
+
+        .review-flex {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .review {
+            flex: 0 0 70%;
+            width: 70%;
+        }
+
+        .right-review {
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .quote {
+            font-size: 14pt;
+        }
+
+        .name {
+            float: right;
         }
 
         .landing-page-another-content-1-container {
@@ -302,13 +369,57 @@
             </div>
         </div>
     </div>
-    <div class="landing-page-content-container">
-        <h1>something else</h1>
-        <p>more stuff</p>
+    <div class="your-new-favorite-container">
+        <div class="your-new-favorite-flex">
+            <div class="your-new-favorite-text">
+                <h1>Your new favorite restaurants, delivered to you</h1>
+                <p id="your-new-favorite-filled">Interactive search tool with your hunger in mind</p>
+                <p>Get the cuisine you want, from the best</p>
+                <p>Designed to link your favorite delivery apps</p>
+                <p>Faster discover time = earlier eating time</p>
+            </div>
+            <div class="your-new-favorite-image">
+                <img src="https://drive.google.com/uc?export=view&id=1DHZQdHmRouaxeJ7Leu3zDd64E5FO5qhA" />
+            </div>
+        </div>
     </div>
-    <div class="landing-page-another-content-container">
-        <h1>something else</h1>
-        <p>more stuff</p>
+    <div class="stories-from-real-people-container">
+        <h1>Stories from real people</h1>
+        <div class="review-flex">
+            <div class="review left-review">
+                <div class="quote">
+                    <p>"I've always wanted a 'where-to-watch' but for delivery, and I've never found one.
+                        Fork It Over can do that and more. I've found so many new restaurants that I never
+                        knew were in my area, and they're so good!"</p>
+                </div>
+                <div class="name">
+                    <p>- Jesse Riley</p>
+                </div>
+            </div>
+            <div class="review right-review">
+                <div class="quote">
+                    <p>"This is exactly what I was looking for. I recently moved to Atlanta and was looking through
+                        all my delivery apps to find restaurants nearby, and this app makes it so much easier! I don't
+                        have to waste my time clicking through different restaurants on my delivery apps and then
+                        searching
+                        for their
+                        ratings online to see if they're actually good. Now I can eat faster and better!"</p>
+                </div>
+                <div class="name">
+                    <p>- Gine&eacute; Scott</p>
+                </div>
+            </div>
+            <div class="review left-review">
+                <div class="quote">
+                    "I've been bored with what's around me for delivery, and I wanted new places to try. Fork It Over
+                    helped so much - I have found three new favorites since I started using it, and I'm so excited for
+                    my friends to try them!"
+                </div>
+                <div class="name">
+                    <p>- Sabatani Shetu</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="landing-page-another-content-1-container">
         <h1>something else</h1>
