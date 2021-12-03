@@ -3,33 +3,37 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from './App';
 
-test('renders buttons', () => {
+test('Tests the buttons and images', () => {
   render(<App />);
-  const searchButton = screen.getByText('Search!');
+  const searchButton = screen.getByAltText('search-button');
   expect(searchButton).toBeInTheDocument();
-  const logoutButton = screen.getByDisplayValue('LOGOUT');
+  const logoutButton = screen.getByAltText('log-out');
   expect(logoutButton).toBeInTheDocument();
+  const logo = screen.getByAltText('logo');
+  expect(logo).toBeInTheDocument();
+  
 });
 
-test('loading message', () => {
+test('Testing invalid radius entry', () => {
   render(<App />);
-  const searchButton = screen.getByText('Search!');
+  const searchButton = screen.getByAltText('search-button');
   const queryInput = screen.getByTestId('query_input');
   const locationInput = screen.getByTestId('location_input');
-  fireEvent.change(queryInput, { target: { value: 'burgers' } });
-  fireEvent.change(locationInput, { target: { value: 'Atlanta,GA' } });
-  userEvent.selectOptions(screen.getByTestId('radius_options'), '5');
+  const radius = screen.getByPlaceholderText('radius in miles');
+  fireEvent.change(queryInput, { target: { value: 'Boba' } });
+  fireEvent.change(locationInput, { target: { value: 'Doraville' } });
+  fireEvent.change(radius, { target: { value: '55' } });
   fireEvent.click(searchButton);
-
   const loadingMessage = screen.getByTestId('loading');
   expect(loadingMessage).toBeInTheDocument();
 });
 
-test('select option', () => {
+test('Making sure placeholder texts is in all text fields', () => {
   render(<App />);
-  userEvent.selectOptions(screen.getByTestId("radius_options"), "5");
-
-  expect(screen.getByTestId("5_miles").selected).toBe(true);
-  expect(screen.getByTestId("10_miles").selected).toBe(false);
-  expect(screen.getByTestId("15_miles").selected).toBe(false);
+  const radius = screen.getByPlaceholderText('radius in miles');
+  const food = screen.getByPlaceholderText('ramen, cheap dinner, Thai');
+  const location = screen.getByPlaceholderText('address, neighborhood, city, state or zip');
+  expect(radius).toBeInTheDocument();
+  expect(food).toBeInTheDocument();
+  expect(location).toBeInTheDocument();
 });
