@@ -121,7 +121,7 @@ function App() {
                                 <button class="searchbar-button" onClick={onSavedUser}>
                                   <span class="searchbar-button-image-wrapper">
                                     {message.length == 0 ?
-                                      (<img class="searchbar-button-image" src={searchbutton} />) :
+                                      (<img alt='search-button' data-search-testid="searchbar-button-test-id" class="searchbar-button-image" src={searchbutton} />) :
                                       (<img class="searchbar-button-image" src={spinner} />)}
                                   </span>
                                 </button>
@@ -202,7 +202,7 @@ function App() {
                                           <div class="menu-item-symbol-container">
                                             <div class="menu-item-symbol-padding">
                                               <span class="menu-item-symbol-wrapper">
-                                                <img class="menu-item-symbol" src={logout} />
+                                                <img alt='log-out' class="menu-item-symbol" src={logout} />
                                               </span>
                                             </div>
                                           </div>
@@ -352,7 +352,7 @@ function App() {
                                       <div class="menu-item-symbol-container">
                                         <div class="menu-item-symbol-padding">
                                           <span class="menu-item-symbol-wrapper">
-                                            <img class="menu-item-symbol" src={logout} />
+                                              <img alt='log-out' class="menu-item-symbol" src={logout} />
                                           </span>
                                         </div>
                                       </div>
@@ -374,7 +374,7 @@ function App() {
             </div>
           </div>
           <div class="big-center-logo-container">
-            <img class="big-center-logo" src={logo} />
+            <img alt= "logo" class="big-center-logo" src={logo} />
           </div>
           <div class="searchbar-outer-container-no-results">
             <div class="searchbar-mid-container">
@@ -409,7 +409,7 @@ function App() {
                           <button class="searchbar-button" onClick={onSavedUser}>
                             <span class="searchbar-button-image-wrapper">
                               {message.length == 0 ?
-                                (<img class="searchbar-button-image" src={searchbutton} />) :
+                                (<img alt='search-button' data-search-testid="searchbar-button-test-id" class="searchbar-button-image" src={searchbutton} />) :
                                 (<img class="searchbar-button-image" src={spinner} />)}
                             </span>
                           </button>

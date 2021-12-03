@@ -567,7 +567,10 @@ input[type=number] {
     box-shadow: 0 0 18px #00000026;
     min-width: 500px;
 }
+.places-container:hover {
+  transform: scale(1.05); 
 
+}
 .places{
   color: #3B457B;
   text-align: left;
