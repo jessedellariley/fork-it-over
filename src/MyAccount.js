@@ -18,10 +18,10 @@ export default function Account() {
         <div class="logo-container"><img src={logo} class="logo" alt="logo" /></div>
         <div class="navbar-no-results">
           <span class="navbar-link-container">
-            <NavLink to="/about" class="navbar-link">
+            <NavLink to="/index" class="navbar-link">
               <div class="navbar-link-title-padding">
                 <div class="navbar-link-title-container">
-                  <p class="navbar-link-title">ABOUT</p>
+                  <p class="navbar-link-title">SEARCH</p>
                 </div>
               </div>
             </NavLink>
@@ -29,10 +29,10 @@ export default function Account() {
         </div>
         <div class="navbar-no-results">
           <span class="navbar-link-container">
-            <NavLink to="/index" class="navbar-link">
+            <NavLink to="/about" class="navbar-link">
               <div class="navbar-link-title-padding">
                 <div class="navbar-link-title-container">
-                  <p class="navbar-link-title">SEARCH</p>
+                  <p class="navbar-link-title">ABOUT</p>
                 </div>
               </div>
             </NavLink>

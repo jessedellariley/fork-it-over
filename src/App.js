@@ -13,7 +13,7 @@ import grubhub_img from './grubhub.png';
 import doordash_img from './doordash.png';
 import postmates_img from './postmates.png';
 import filledfavorite from './filledfavorite.png';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function App() {
   const [inputs, setInputs] = useState([]);
@@ -136,13 +136,13 @@ export default function App() {
                 </div>
                 <div class="navbar">
                   <span class="navbar-link-container">
-                    <Link to="/about" class="navbar-link">
+                    <NavLink to="/about" class="navbar-link">
                       <div class="navbar-link-title-padding">
                         <div class="navbar-link-title-container">
                           <p class="navbar-link-title">ABOUT</p>
                         </div>
                       </div>
-                    </Link>
+                    </NavLink>
                   </span>
                 </div>
                 <div class="account-outer-container">
@@ -161,7 +161,7 @@ export default function App() {
                             </button>
                             <menu class="menu">
                               <div class="menu-account-section">
-                                <Link to="/account" class="menu-item">
+                                <NavLink to="/account" class="menu-item">
                                   <div class="menu-item-components-padding">
                                     <div class="menu-item-components-container">
                                       <div class="menu-item-symbol-container">
@@ -176,8 +176,8 @@ export default function App() {
                                       </div>
                                     </div>
                                   </div>
-                                </Link>
-                                <Link to="/favorites" class="menu-item">
+                                </NavLink>
+                                <NavLink to="/favorites" class="menu-item">
                                   <div class="menu-item-components-padding">
                                     <div class="menu-item-components-container">
                                       <div class="menu-item-symbol-container">
@@ -192,7 +192,7 @@ export default function App() {
                                       </div>
                                     </div>
                                   </div>
-                                </Link>
+                                </NavLink>
                               </div>
                               <div class="menu-logout-section">
                                 <form id="logout" class="logout" action="/logout" name="logout" method="post">
@@ -291,24 +291,24 @@ export default function App() {
           <div class="header-no-results">
             <div class="navbar-no-results">
               <span class="navbar-link-container">
-                <Link to="/about" class="navbar-link">
+                <NavLink to="/about" class="navbar-link">
                   <div class="navbar-link-title-padding">
                     <div class="navbar-link-title-container">
                       <p class="navbar-link-title">ABOUT</p>
                     </div>
                   </div>
-                </Link>
+                </NavLink>
               </span>
             </div>
             <div class="navbar-no-results">
               <span class="navbar-link-container">
-                <Link to="/favorites" class="navbar-link">
+                <NavLink to="/favorites" class="navbar-link">
                   <div class="navbar-link-title-padding">
                     <div class="navbar-link-title-container">
                       <p class="navbar-link-title">FAVORITES</p>
                     </div>
                   </div>
-                </Link>
+                </NavLink>
               </span>
             </div>
             <div class="account-no-results">
@@ -327,7 +327,7 @@ export default function App() {
                         </button>
                         <menu class="menu">
                           <div class="menu-account-section">
-                            <Link to="/account" class="menu-item">
+                            <NavLink to="/account" class="menu-item">
                               <div class="menu-item-components-padding">
                                 <div class="menu-item-components-container">
                                   <div class="menu-item-symbol-container">
@@ -342,7 +342,7 @@ export default function App() {
                                   </div>
                                 </div>
                               </div>
-                            </Link>
+                            </NavLink>
                           </div>
                           <div class="menu-logout-section">
                             <form id="logout" class="logout" action="/logout" name="logout" method="post">
