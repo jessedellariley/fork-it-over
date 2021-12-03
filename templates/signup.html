@@ -444,6 +444,10 @@
             padding-right: 250px;
         }
 
+        .start-for-free-text a {
+            text-decoration: none;
+        }
+
         .start-for-free-text button {
             margin-left: 0;
         }
@@ -570,8 +574,7 @@
                 <h1>Find Your New Delivery Spot</h1>
                 <p>Fork It Over will find the best restaurants that offer
                     what you're craving and then link you directly to their page on your favorite delivery
-                    app or site. You can even check for restaurants that are open now to make sure the restaurant is as
-                    ready for you as you are for them. Sign up now to use our search tool. It's 100% free,
+                    app or site. Sign up now to use our search tool. It's 100% free,
                     no premium memberships or upgrades needed.
                 </p>
             </div>
@@ -586,10 +589,10 @@
                 {% endif %}
                 {% endwith %}
                 <form method="POST" action="/signup">
-                    <label for="username" class="labels">Username</label>
+                    <label for="username" class="labels">Email</label>
                     <br>
-                    <input type="text" name="username" id="username" placeholder="Username" minlength="8" maxlength="30"
-                        required class="username-password" />
+                    <input name="username" id="username" placeholder="Email" required class="username-password"
+                        type="email" pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" />
                     <br>
                     <label for="password" class="labels">Password</label>
                     <br>
@@ -756,7 +759,7 @@
                 <p class="start-for-free-text-sign-up">If you've made it this far, you must be at least a little bit
                     hungry.</p>
                 <p class="start-for-free-text-sign-up">Sign up and take the first step towards new food adventures.</p>
-                <button class="button">Sign Up</button>
+                <a href="/signup"><button class="button">Sign Up</button></a>
             </div>
         </div>
     </div>
@@ -767,13 +770,13 @@
             </div>
             <div class="footer-text">
                 <p class="footer-header">RESOURCES</p>
-                <a href="about.html">
+                <a href="/about">
                     <p>About</p>
                 </a>
-                <a href="login.html">
+                <a href="/login">
                     <p>Log in</p>
                 </a>
-                <a href="signup.html">
+                <a href="/signup">
                     <p>Sign Up</p>
                 </a>
             </div>

@@ -108,7 +108,8 @@ def signup_post():
     db.session.add(user)
     db.session.commit()
 
-    return redirect(url_for("login"))
+    login_user(user)
+    return redirect("/index")
 
 
 @app.route("/login")
@@ -190,6 +191,11 @@ def food_places():
         return flask.jsonify({"status": 401, "reason": "Invalid Search Inputs Error"})
 
     return flask.jsonify({"flaskData": data})
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 
 if __name__ == "__main__":
