@@ -5,7 +5,7 @@ import accountdropdown from './account-dropdown.png';
 import logout from './logout.png';
 import logo from './Logo_LightBG.png';
 
-export default function Favorites(props) {
+export default function About(props) {
     return (
         <div>
             <div class="header-no-results">
@@ -106,7 +106,7 @@ export default function Favorites(props) {
                     </div>
                 </div>
             </div>
-            <h1>My Favorites</h1>
+            <h1>About</h1>
         </div>
     );
 }

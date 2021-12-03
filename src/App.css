@@ -19,6 +19,7 @@ li, a, button{
     border-bottom: 1px solid #3B457B;
     background-color: #e9edf4;
     box-shadow: 0 0 18px #00000026;
+    z-index: 1;
 }
 
 .header-container {

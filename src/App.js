@@ -13,8 +13,9 @@ import grubhub_img from './grubhub.png';
 import doordash_img from './doordash.png';
 import postmates_img from './postmates.png';
 import filledfavorite from './filledfavorite.png';
+import { Link } from "react-router-dom";
 
-function App() {
+export default function App() {
   const [inputs, setInputs] = useState([]);
   const [result, setResult] = useState([]);
   const [message, setMessage] = useState([]);
@@ -135,13 +136,13 @@ function App() {
                 </div>
                 <div class="navbar">
                   <span class="navbar-link-container">
-                    <a href="#" class="navbar-link">
+                    <Link to="/about" class="navbar-link">
                       <div class="navbar-link-title-padding">
                         <div class="navbar-link-title-container">
                           <p class="navbar-link-title">ABOUT</p>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </span>
                 </div>
                 <div class="account-outer-container">
@@ -160,7 +161,7 @@ function App() {
                             </button>
                             <menu class="menu">
                               <div class="menu-account-section">
-                                <a class="menu-item" href="#" tabindex="0">
+                                <Link to="/account" class="menu-item">
                                   <div class="menu-item-components-padding">
                                     <div class="menu-item-components-container">
                                       <div class="menu-item-symbol-container">
@@ -175,8 +176,8 @@ function App() {
                                       </div>
                                     </div>
                                   </div>
-                                </a>
-                                <a class="menu-item" href="#" tabindex="0">
+                                </Link>
+                                <Link to="/favorites" class="menu-item">
                                   <div class="menu-item-components-padding">
                                     <div class="menu-item-components-container">
                                       <div class="menu-item-symbol-container">
@@ -191,7 +192,7 @@ function App() {
                                       </div>
                                     </div>
                                   </div>
-                                </a>
+                                </Link>
                               </div>
                               <div class="menu-logout-section">
                                 <form id="logout" class="logout" action="/logout" name="logout" method="post">
@@ -290,24 +291,24 @@ function App() {
           <div class="header-no-results">
             <div class="navbar-no-results">
               <span class="navbar-link-container">
-                <a href="#" class="navbar-link">
+                <Link to="/about" class="navbar-link">
                   <div class="navbar-link-title-padding">
                     <div class="navbar-link-title-container">
                       <p class="navbar-link-title">ABOUT</p>
                     </div>
                   </div>
-                </a>
+                </Link>
               </span>
             </div>
             <div class="navbar-no-results">
               <span class="navbar-link-container">
-                <a href="#" class="navbar-link">
+                <Link to="/favorites" class="navbar-link">
                   <div class="navbar-link-title-padding">
                     <div class="navbar-link-title-container">
                       <p class="navbar-link-title">FAVORITES</p>
                     </div>
                   </div>
-                </a>
+                </Link>
               </span>
             </div>
             <div class="account-no-results">
@@ -326,7 +327,7 @@ function App() {
                         </button>
                         <menu class="menu">
                           <div class="menu-account-section">
-                            <a class="menu-item" href="#" tabindex="0">
+                            <Link to="/account" class="menu-item">
                               <div class="menu-item-components-padding">
                                 <div class="menu-item-components-container">
                                   <div class="menu-item-symbol-container">
@@ -341,7 +342,7 @@ function App() {
                                   </div>
                                 </div>
                               </div>
-                            </a>
+                            </Link>
                           </div>
                           <div class="menu-logout-section">
                             <form id="logout" class="logout" action="/logout" name="logout" method="post">
@@ -352,7 +353,7 @@ function App() {
                                       <div class="menu-item-symbol-container">
                                         <div class="menu-item-symbol-padding">
                                           <span class="menu-item-symbol-wrapper">
-                                              <img alt='log-out' class="menu-item-symbol" src={logout} />
+                                            <img alt='log-out' class="menu-item-symbol" src={logout} />
                                           </span>
                                         </div>
                                       </div>
@@ -374,7 +375,7 @@ function App() {
             </div>
           </div>
           <div class="big-center-logo-container">
-            <img alt= "logo" class="big-center-logo" src={logo} />
+            <img alt="logo" class="big-center-logo" src={logo} />
           </div>
           <div class="searchbar-outer-container-no-results">
             <div class="searchbar-mid-container">
@@ -429,4 +430,3 @@ function App() {
     </div>
   );
 }
-export default App;
