@@ -14,6 +14,7 @@ import doordash_img from './doordash.png';
 import postmates_img from './postmates.png';
 import filledfavorite from './filledfavorite.png';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Favorites from './Favorites.js';
 
 
 function App() {
