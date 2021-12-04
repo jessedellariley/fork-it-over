@@ -7,6 +7,7 @@ Functions:
 """
 import os
 import flask
+import json
 from flask import Flask, render_template, url_for, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import (
@@ -41,8 +42,8 @@ class User(UserMixin, db.Model):
     """Define User database to store username, password."""
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    password = db.Column(db.String(200))
+    username = db.Column(db.String(80), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
 
     def __repr__(self):
         """Return string representation of this user."""
@@ -51,6 +52,24 @@ class User(UserMixin, db.Model):
     def get_username(self):
         """Return the username of this user."""
         return self.username
+
+
+class Address(db.Model):
+    """
+    Model for saved addresses
+    """
+
+    id = db.Column(db.Integer, primary_key=True)
+    address = db.Column(
+        db.String(150),
+    )
+    username = db.Column(db.String(80), nullable=False)
+
+    def __repr__(self):
+        """
+        Determines what happens when we print an instance of the class
+        """
+        return f"<Address {self.address}>"
 
 
 db.create_all()
@@ -65,8 +84,16 @@ bp = flask.Blueprint("bp", __name__, template_folder="./build")
 @bp.route("/index")
 @login_required
 def index():
-    """Render index.html"""
-    return render_template("index.html")
+    """Fetches user and address data and embeds it in
+    the returned HTML."""
+    addresses = Address.query.filter_by(username=current_user.username).all()
+    addresses = [a.address for a in addresses]
+
+    data = json.dumps({"email": current_user.username, "addresses": addresses})
+    return flask.render_template(
+        "index.html",
+        data=data,
+    )
 
 
 app.register_blueprint(bp)
@@ -196,6 +223,62 @@ def food_places():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+
+@app.route("/save", methods=["POST"])
+def save():
+    """
+    Receives JSON data from App.js and updates the DB.
+    """
+    addresses = flask.request.json.get("addresses")
+    email = flask.request.json.get("username")
+    addresses = set(addresses)
+    username = current_user.username
+    if email != "" and username != email:
+        update_username(username, email)
+        username = email
+    update_db_addresses_for_user(username, addresses)
+    addresses = list(addresses)
+    data = json.dumps({"email": current_user.username, "addresses": addresses})
+    return flask.render_template(
+        "index.html",
+        data=data,
+    )
+
+
+def update_db_addresses_for_user(username, addresses):
+    """
+    Updates the DB with new addresses.
+    """
+    existing_addresses = {
+        v.address for v in Address.query.filter_by(username=username).all()
+    }
+    new_addresses = addresses - existing_addresses
+    for new_address in new_addresses:
+        db.session.add(Address(address=new_address, username=username))
+    if len(existing_addresses - addresses) > 0:
+        for address in Address.query.filter_by(username=username).filter(
+            Address.address.notin_(addresses)
+        ):
+            db.session.delete(address)
+    db.session.commit()
+    addresses = list(addresses)
+    response = {"username": username, "addresses": addresses}
+    return flask.jsonify(response)
+
+
+def update_username(username, email):
+    """
+    Updates the DB with a new username.
+    """
+    user = User.query.filter_by(username=username).first()
+    user.username = email
+    addresses = {v.address for v in Address.query.filter_by(username=username).all()}
+    for address in addresses:
+        db.session.add(Address(address=address, username=email))
+    for address in Address.query.filter_by(username=username).all():
+        db.session.delete(address)
+    db.session.commit()
 
 
 if __name__ == "__main__":

@@ -730,3 +730,157 @@ input[type=number] {
 .logo-wrapper{
     text-align: center;
 }
+
+.address-dropdown-container {
+    width: 100%;
+    height: 100%;
+}
+
+.address-dropdown-container:hover .menu {
+    display: block;
+}
+
+.address-dropdown {
+    background-color: white;
+    border:none;
+    width: 100%;
+    height: 100%;
+}
+
+.address-menu {
+    background-color: white;
+    width: 30%;
+    right: 25%;
+}
+
+.menu-address-item {
+    background-color: white;
+}
+
+.logo-account {
+    margin: 24px 40px;
+    margin-right: auto;
+}
+
+.myaccount-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    background-color: #e9edf4;
+    height: auto;
+    padding: 40px;
+    border-radius: 25px;
+}
+
+.account-page {
+    background-color: #131d38;
+    color: #131d38;
+    background-size: cover;
+    height: 100vh;
+}
+
+.account-page h1 {
+    text-align: center;
+    width: 100%;
+}
+
+.email-input {
+    border-radius: 25px;
+    padding: 15px;
+    width: 100%;
+}
+
+.account-page label {
+    padding: 5px;
+    text-align: right;
+    width: 35%;
+    display: inline-block;
+}
+
+.account-page h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.account-page button {
+    text-decoration: none;
+    border: none;
+    background-color: #131d38;
+    color: white;
+    border-radius: 25px;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+.account-page input {
+    border-radius: 25px;
+    padding: 15px;
+    border: 1pt solid #131d38;
+}
+
+.addresses-list {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+#add {
+    font-size: 24pt;
+    font-weight: bold;
+    margin: 0;
+    margin-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+    background-color: #e9edf4;
+    color: #131d38;
+}
+
+#delete {
+    font-size: 24pt;
+    font-weight: bold;
+    margin: 0;
+    margin-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+    background-color: #e9edf4;
+    color: #131d38;
+}
+
+.update {
+    width: 100%;
+    text-align: center;
+}
+
+.addresses {
+    width: 100%;
+}
+
+.white-nav {
+    color: #e9edf4 !important;
+}
+
+#account-page-logout {
+    margin: 0px;
+    background-color: #e9edf4;
+    border: 0;
+    border-radius: 4px;
+    color: #0C0D0F;
+    cursor: pointer;
+    display: block;
+    font-size: 100%;
+    line-height: 1;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+    width: 100%;
+}

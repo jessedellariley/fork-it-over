@@ -23,17 +23,6 @@ export default function Favorites(props) {
                 </div>
                 <div class="navbar-no-results">
                     <span class="navbar-link-container">
-                        <NavLink to="/about" class="navbar-link">
-                            <div class="navbar-link-title-padding">
-                                <div class="navbar-link-title-container">
-                                    <p class="navbar-link-title">ABOUT</p>
-                                </div>
-                            </div>
-                        </NavLink>
-                    </span>
-                </div>
-                <div class="navbar-no-results">
-                    <span class="navbar-link-container">
                         <NavLink to="/favorites" class="navbar-link">
                             <div class="navbar-link-title-padding">
                                 <div class="navbar-link-title-container">

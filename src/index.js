@@ -6,7 +6,6 @@ import {
   Route
 } from "react-router-dom";
 import App from "./App";
-import About from "./About";
 import Account from "./MyAccount";
 import Favorites from "./MyFavorites";
 
@@ -15,7 +14,6 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/index" element={<App />} />
-      <Route path="about" element={<About />} />
       <Route path="favorites" element={<Favorites />} />
       <Route path="account" element={<Account />} />
     </Routes>

@@ -16,12 +16,17 @@ import filledfavorite from './filledfavorite.png';
 import { NavLink } from "react-router-dom";
 
 export default function App() {
+  const args = (document.getElementById('data') == null) ? ({
+    addresses: [],
+    email: ''
+  }) : JSON.parse(document.getElementById('data').text);
+  const [searchAddresses, updateAddresses] = useState(args.addresses);
+  const [addressValue, setAddressValue] = useState((searchAddresses.length > 0) ? searchAddresses[0] : "");
   const [inputs, setInputs] = useState([]);
   const [result, setResult] = useState([]);
   const [message, setMessage] = useState([]);
   const [loading, setSpinner] = useState([]);
   const [errorMessage, setErrorMessage] = useState([]);
-
 
   const foodInput = useRef(null);
   const addressInput = useRef(null);
@@ -81,6 +86,19 @@ export default function App() {
     });
 
   }
+  function onClickAccount() {
+    return searchAddresses;
+  }
+  function onClickAddress(addr) {
+    setAddressValue(addr);
+  };
+  const addressesMenu = searchAddresses.map((addr, i) => (
+    <button onClick={() => onClickAddress(addr)} class="menu-item menu-address-item">
+      <div class="menu-item-components-padding">
+        <span class="menu-item-name">{addr}</span>
+      </div>
+    </button>
+  ));
   return (
     <div>
       {result?.flaskData?.businesses ? (
@@ -103,10 +121,18 @@ export default function App() {
                                 </div>
                               </div>
                               <div class="location-container">
-                                <div class="location">
-                                  <input ref={addressInput} placeholder="address, neighborhood, city, state or zip" type="text" name="address"
-                                    required class="textbox" spellcheck="value" data-testid="location_input" autocomplete="off"
-                                    aria-autocomplete="list" tabindex="0" />
+                                <div class="address-dropdown-container">
+                                  <button aria-label="Toggle Menu" aria-haspopup="menu" aria-controls="header-dropdown-menu"
+                                    aria-expanded="true" type="submit" class="address-dropdown">
+                                    <div class="location">
+                                      <input ref={addressInput} placeholder="address, neighborhood, city, state or zip" type="text" name="address"
+                                        required class="textbox" spellcheck="value" data-testid="location_input" autocomplete="off"
+                                        aria-autocomplete="list" tabindex="0" value={addressValue} onInput={e => setAddressValue(e.target.value)} />
+                                    </div>
+                                  </button>
+                                  <menu class="menu address-menu">
+                                    {addressesMenu}
+                                  </menu>
                                 </div>
                               </div>
                               <div class="radius-container">
@@ -134,17 +160,6 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-                <div class="navbar">
-                  <span class="navbar-link-container">
-                    <NavLink to="/about" class="navbar-link">
-                      <div class="navbar-link-title-padding">
-                        <div class="navbar-link-title-container">
-                          <p class="navbar-link-title">ABOUT</p>
-                        </div>
-                      </div>
-                    </NavLink>
-                  </span>
-                </div>
                 <div class="account-outer-container">
                   <div class="account-table">
                     <div class="account-table-cell">
@@ -161,7 +176,8 @@ export default function App() {
                             </button>
                             <menu class="menu">
                               <div class="menu-account-section">
-                                <NavLink to="/account" class="menu-item">
+                                <NavLink to="/account"
+                                  class="menu-item">
                                   <div class="menu-item-components-padding">
                                     <div class="menu-item-components-container">
                                       <div class="menu-item-symbol-container">
@@ -291,17 +307,6 @@ export default function App() {
           <div class="header-no-results">
             <div class="navbar-no-results">
               <span class="navbar-link-container">
-                <NavLink to="/about" class="navbar-link">
-                  <div class="navbar-link-title-padding">
-                    <div class="navbar-link-title-container">
-                      <p class="navbar-link-title">ABOUT</p>
-                    </div>
-                  </div>
-                </NavLink>
-              </span>
-            </div>
-            <div class="navbar-no-results">
-              <span class="navbar-link-container">
                 <NavLink to="/favorites" class="navbar-link">
                   <div class="navbar-link-title-padding">
                     <div class="navbar-link-title-container">
@@ -391,10 +396,18 @@ export default function App() {
                           </div>
                         </div>
                         <div class="location-container">
-                          <div class="location">
-                            <input ref={addressInput} placeholder="address, neighborhood, city, state or zip" type="text" name="address"
-                              required class="textbox" spellcheck="value" data-testid="location_input" autocomplete="off"
-                              aria-autocomplete="list" tabindex="0" />
+                          <div class="address-dropdown-container">
+                            <button aria-label="Toggle Menu" aria-haspopup="menu" aria-controls="header-dropdown-menu"
+                              aria-expanded="true" type="submit" class="address-dropdown">
+                              <div class="location">
+                                <input ref={addressInput} placeholder="address, neighborhood, city, state or zip" type="text" name="address"
+                                  required class="textbox" spellcheck="value" data-testid="location_input" autocomplete="off"
+                                  aria-autocomplete="list" tabindex="0" value={addressValue} onInput={e => setAddressValue(e.target.value)} />
+                              </div>
+                            </button>
+                            <menu class="menu address-menu">
+                              {addressesMenu}
+                            </menu>
                           </div>
                         </div>
                         <div class="radius-container">

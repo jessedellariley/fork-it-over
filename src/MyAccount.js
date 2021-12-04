@@ -1,38 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import account from './account.png';
-import accountdropdown from './account-dropdown.png';
+import account from './white-account.png';
+import accountdropdown from "./account-dropdown.png"
 import logout from './logout.png';
-import logo from './Logo_LightBG.png';
+import logo from './Logo_DarkBG.png';
+import { useLocation } from "react-router";
 
 export default function Account() {
-  const [error] = useState("");
+  const args = (document.getElementById('data') == null) ? ({
+    addresses: [],
+    email: ''
+  }) : JSON.parse(document.getElementById('data').text);
+  let location = useLocation();
+  const [accountAddresses, setAddresses] = useState(args.addresses);
+  const [email, setEmail] = useState(args.email);
+  const [addressInput, setAddressInput] = useState('');
+  const [emailInput, setEmailInput] = useState('');
 
-  const onUpdate = async () => {
-    console.log("onUpdate");
+  function onClickAdd() {
+    const address = addressInput;
+    const updatedAddresses = [...accountAddresses, address];
+    setAddresses(updatedAddresses);
+    setAddressInput('');
+  }
+
+  function onClickDelete(i) {
+    const updatedAddresses = [...accountAddresses.slice(0, i), ...accountAddresses.slice(i + 1)];
+    setAddresses(updatedAddresses);
+  }
+
+  function onUpdate() {
+    const requestData = { username: emailInput, addresses: accountAddresses };
+    fetch('/save', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setAddresses(data.addresses);
+        setEmail(data.username);
+      });
+    setEmailInput("");
   };
 
+  const addressesList = accountAddresses.map((address, i) => (
+    <div class="adresses-list">
+      <span>{address}</span>
+      <button id="delete" onClick={() => onClickDelete(i)}>-</button>
+    </div>
+  ));
+
   return (
-    <div>
-      <div class="header-no-results">
-        <div class="logo-container"><img src={logo} class="logo" alt="logo" /></div>
+    <div class="account-page">
+      <div class="header-container header-no-results">
+        <div class="logo-container logo-account"><img src={logo} class="logo" alt="logo" /></div>
         <div class="navbar-no-results">
           <span class="navbar-link-container">
             <NavLink to="/index" class="navbar-link">
               <div class="navbar-link-title-padding">
                 <div class="navbar-link-title-container">
-                  <p class="navbar-link-title">SEARCH</p>
-                </div>
-              </div>
-            </NavLink>
-          </span>
-        </div>
-        <div class="navbar-no-results">
-          <span class="navbar-link-container">
-            <NavLink to="/about" class="navbar-link">
-              <div class="navbar-link-title-padding">
-                <div class="navbar-link-title-container">
-                  <p class="navbar-link-title">ABOUT</p>
+                  <p class="navbar-link-title white-nav">SEARCH</p>
                 </div>
               </div>
             </NavLink>
@@ -43,7 +73,7 @@ export default function Account() {
             <NavLink to="/favorites" class="navbar-link">
               <div class="navbar-link-title-padding">
                 <div class="navbar-link-title-container">
-                  <p class="navbar-link-title">FAVORITES</p>
+                  <p class="navbar-link-title white-nav">FAVORITES</p>
                 </div>
               </div>
             </NavLink>
@@ -85,7 +115,7 @@ export default function Account() {
                       <div class="menu-logout-section">
                         <form id="logout" class="logout" action="/logout" name="logout" method="post">
                           <div class="logout-button-wrapper">
-                            <button class="menu-item" type="submit" role="menuitem" tabindex="0">
+                            <button id="account-page-logout" class="menu-item" type="submit" role="menuitem" tabindex="0">
                               <div class="menu-item-components-padding">
                                 <div class="menu-item-components-container">
                                   <div class="menu-item-symbol-container">
@@ -112,76 +142,30 @@ export default function Account() {
           </div>
         </div>
       </div>
-      <div className="container myacccount-container">
+      <div className="myaccount-container">
         <h1>My Account</h1>
-        <div className="body">
-          <form>
-            <div>
-              <label htmlFor="firstName">First Name:</label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="First Name"
-              />
-            </div>
-            <div>
-              <label htmlFor="lastName">Last Name:</label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="First Name"
-              />
-            </div>
-            <div>
-              <label htmlFor="lastName">User Name:</label>
-              <input
-                type="text"
-                id="userName"
-                name="userName"
-                placeholder="Username"
-              />
-            </div>
-            <h2>My Address</h2>
-            <div className="input-icons">
-              <label htmlFor="address">Home:</label>
-              <i className="fa fa-close icon" />
-              <input
-                type="text"
-                id="address"
-                name="address"
-                placeholder="Home"
-              />
-            </div>
-            <div className="input-icons">
-              <label htmlFor="vacation">Vacation:</label>
-              <i className="fa fa-close icon" />
-              <input
-                type="text"
-                id="vacation"
-                name="vacation"
-                placeholder="Vacation"
-              />
-            </div>
-            <div className="input-icons">
-              <i className="fa fa-plus icon" />
-              <input
-                type="text"
-                id="address2"
-                name="address2"
-                placeholder="Add an Address"
-              />
-            </div>
-            <div className="button-container">
-              <button type="button" onClick={onUpdate}>
-                Update
-              </button>
-            </div>
-          </form>
+        <div class="email-input">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder={email}
+            value={emailInput}
+            onInput={e => setEmailInput(e.target.value)}
+          />
         </div>
-        <div className="center">
-          <span>{error}</span>
+        <h2>Addresses</h2>
+        {addressesList}
+        <div class="addresses">
+          <label for="address">Add a new address: </label>
+          <input id="address" type="text" value={addressInput} onInput={e => setAddressInput(e.target.value)} />
+          <button id="add" onClick={onClickAdd}>+</button>
+        </div>
+        <div class="update">
+        <button type="button" onClick={onUpdate}>
+          Update
+        </button>
         </div>
       </div>
     </div>
