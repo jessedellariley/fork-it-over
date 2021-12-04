@@ -302,17 +302,19 @@ function App() {
                   </a>
                 </span>
               </div>
-              <div class="navbar-no-results">
-                <span class="navbar-link-container">
-                  <a href="/index/favorites" class="navbar-link">
-                    <div class="navbar-link-title-padding">
-                      <div class="navbar-link-title-container">
-                        <p class="navbar-link-title">FAVORITES</p>
+              <Routes>
+                <div class="navbar-no-results">
+                  <span class="navbar-link-container">
+                    <Route path="/index/favorites" element={<Favorites />} class="navbar-link">
+                      <div class="navbar-link-title-padding">
+                        <div class="navbar-link-title-container">
+                          <p class="navbar-link-title">FAVORITES</p>
+                        </div>
                       </div>
-                    </div>
-                  </a>
-                </span>
-              </div>
+                    </Route>
+                  </span>
+                </div>
+              </Routes>
               <div class="account-no-results">
                 <div class="account-table">
                   <div class="account-table-cell">
