@@ -99,7 +99,7 @@ def signup_post():
 
     user = User.query.filter_by(username=username).first()
     if user:
-        flask.flash("Username is already taken!")
+        flask.flash("That username must be popular - try another")
         return redirect(url_for("signup"))
     user = User(
         username=username,
@@ -117,7 +117,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["POST"])
 def loginform():
     """Get user input on login form.
     Check if the username entered is in the db, and if not flash a message.
@@ -128,12 +128,12 @@ def loginform():
     username = flask.request.form.get("username")
     password = flask.request.form.get("password")
 
-    # redirects to signup page if username already exits
+    # redirects to signup page if username doesn't exits
     input_user_name = User.query.filter_by(username=username).first()
     if not input_user_name or not check_password_hash(
         input_user_name.password, password
     ):
-        flask.flash("Username or password is wrong!")
+        flask.flash("Username or password is wrong")
         return render_template("login.html")
     login_user(input_user_name)
     return redirect("/index")
@@ -144,7 +144,7 @@ def main():
     """Check if the user is authenticated before redirecting them to search page."""
     if current_user.is_authenticated:
         return redirect(url_for("bp.index"))
-    return redirect(url_for("login"))
+    return redirect(url_for("signup"))
 
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -186,6 +186,9 @@ def food_places():
         if business["rating"] < 4:
             data["businesses"].remove(business)
     data = refine_results_by_delivery(data)
+    if data == "":
+        return flask.jsonify({"status": 401, "reason": "Invalid Search Inputs Error"})
+
     return flask.jsonify({"flaskData": data})
 
 
